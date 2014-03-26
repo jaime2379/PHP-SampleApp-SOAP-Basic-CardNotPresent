@@ -26,7 +26,6 @@
  * the software company to properly integrate into thier solution code that best meets thier production needs.
  */
 
-
 /*
  * Retrieve Service Information
  */
@@ -57,7 +56,6 @@ if ($_serviceId == null)
 			foreach ( $response->BankcardServices->BankcardService as $BankcardService ) {
 				printServiceInformation ( $BankcardService );
 				$_serviceId[] = array('ServiceId' => $BankcardService->ServiceId, 'ServiceName' => $BankcardService->ServiceName);
-
 			}
 		}
 		else {

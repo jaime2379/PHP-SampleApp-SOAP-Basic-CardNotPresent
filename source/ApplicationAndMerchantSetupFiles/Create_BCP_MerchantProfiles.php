@@ -41,6 +41,7 @@ if ($_merchantProfileId == null) {
 		foreach ( $_serviceId as $svcId ) {
 			$merchProfile = setBCPMerchantProfile ();
 			$merchProfile->ProfileId = $merchProfile->ProfileId . '_' . $svcId ['ServiceId'];
+			$merchProfile->ServiceId = $svcId['ServiceId'];
 			
 			$response = $client->saveMerchantProfiles ( $merchProfile, 'Credit', $svcId ['ServiceId'] );
 			if (is_array ( $response ))
@@ -65,7 +66,7 @@ if ($_merchantProfileId == null) {
 
 if ($_merchantProfileId != null)
 	$_merchantProfileId = null;
-//foreach ($_serviceId as $svcId){
+
 $response = $client->getMerchantProfiles ( '', 'Credit' ); // Note a empty value in ServiceId will allow you to pull all profiles across all services
 
 /*
@@ -88,8 +89,7 @@ else{
 	$_merchantProfileId[] = array( 'ProfileId' => $response->ProfileId, 'ServiceId' => $response->ServiceId);
 }
 
-
-if ($_merchantProfileId != null){
+if ($_merchantProfileId != null) {
 	echo '<h2>The following Merchant ProfileId(s) are initialized</h2>';
 	if (is_array($_merchantProfileId))
 	{

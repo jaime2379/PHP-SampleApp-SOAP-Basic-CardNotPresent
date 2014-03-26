@@ -71,18 +71,18 @@ require_once ABSPATH.'/ConfigFiles/ReadConfigValues.php';
 
  $_baseURL = Settings::URL_BaseURL;
 require_once ABSPATH.'/WebServiceProxies/CWSClient.php';
-        $client = new CWSClient($_identityToken, $_serviceKey, $_merchantProfileId[0]['ProfileId'], $_merchantProfileId[0]['ServiceId'], $_applicationProfileId);
+	$client = new CWSClient($_identityToken, $_serviceKey, $_merchantProfileId[0]['ProfileId'], $_merchantProfileId[0]['ServiceId'], $_applicationProfileId);
 
 $_serviceInformation = $client->getServiceInformation();
 
 if (isset($_serviceInformation->BankcardServices)){
-        $_bankcardServices = $_serviceInformation->BankcardServices;
-        require_once ABSPATH.'/TransactionProcessingScripts/BankcardTransactionProcessing.php';
+	$_bankcardServices = $_serviceInformation->BankcardServices;
+	require_once ABSPATH.'/TransactionProcessingScripts/BankcardTransactionProcessing.php';
 }
 
 if (isset($_serviceInformation->ElectronicCheckingServices->ElectronicCheckingService)){
-        $_electronicCheckingServices = $_serviceInformation->ElectronicCheckingServices;
-        require_once ABSPATH.'/TransactionProcessingScripts/ElectronicCheckingTransactionProcessing.php';
+	$_electronicCheckingServices = $_serviceInformation->ElectronicCheckingServices;
+	require_once ABSPATH.'/TransactionProcessingScripts/ElectronicCheckingTransactionProcessing.php';
 }
 
 if (isset($_serviceInformation->StoredValueServices->StoredValueService)){
