@@ -28,7 +28,7 @@ require_once ABSPATH . '/ConfigFiles/app.config.php';
 // Credit Card Info
 /* SEE CREDIT CARD CLASS IN CWSClient.php FOR MORE INFO */
 function setBCPTxnData($_serviceInformation) {
-	if (Settings::IndustryType == 'Retail' && Settings::TxnData_ProcessAsKeyed == false) {
+	if (Settings::IndustryType == 'Retail' && !Settings::TxnData_ProcessAsKeyed && !Settings::TxnData_ProcessEncrypted) {
 		$tenderData = new creditCard ();
 		$tenderData->type = 'Visa';
 		// $tenderData->name = 'John Doe';
@@ -40,7 +40,7 @@ function setBCPTxnData($_serviceInformation) {
 		// $tenderData->track1 = 'B4111111111111111^EVOSNAP/TESTCARD^15121010454500415000010';
 		$tenderData->track2 = '4111111111111111=15121010454541500010';
 	}
-	elseif (Settings::IndustryType == 'Restaurant' && Settings::TxnData_ProcessAsKeyed == false) {
+	elseif (Settings::IndustryType == 'Restaurant' && !Settings::TxnData_ProcessAsKeyed && !Settings::TxnData_ProcessEncrypted) {
 		$tenderData = new creditCard ();
 		$tenderData->type = 'Visa';
 		// $tenderData->name = 'John Doe';
@@ -52,7 +52,7 @@ function setBCPTxnData($_serviceInformation) {
 		// $tenderData->track1 = 'B4111111111111111^EVOSNAP/TESTCARD^15121010454500415000010';
 		$tenderData->track2 = '4111111111111111=15121010454541500010';
 	}
-	elseif (Settings::IndustryType == 'MOTO') {
+	elseif (Settings::IndustryType == 'MOTO' && !Settings::TxnData_ProcessEncrypted) {
 		$tenderData = new creditCard ();
 		$tenderData->type = 'MasterCard';
 		$tenderData->name = 'John Doe';
@@ -62,7 +62,7 @@ function setBCPTxnData($_serviceInformation) {
 		 * $tenderData->cvv = '111'; // Security code $tenderData->address = '1000 1st Av'; $tenderData->zip = '10101';
 		 */
 	}
-	elseif (Settings::IndustryType == 'Ecommerce') {
+	elseif (Settings::IndustryType == 'Ecommerce' && !Settings::TxnData_ProcessEncrypted) {
 		$tenderData = new creditCard ();
 		$tenderData->type = 'Visa';
 		$tenderData->name = 'John Doe';
@@ -203,7 +203,10 @@ function setBCPTxnData($_serviceInformation) {
 		
 		$transactionData->InterchangeData = $interchangeData;
 	}
-	
+	if(Settings::ProcessInternationalTxn)
+	{
+		$transactionData->Is3DSecure = false;
+	}
 	$transaction->TxnData = $transactionData;
 	return $transaction;
 }
