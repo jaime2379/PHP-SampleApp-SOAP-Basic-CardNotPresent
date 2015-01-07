@@ -1,5 +1,5 @@
 <?php
-/* Copyright (c) 2013 EVO Payments International - All Rights Reserved.
+/* Copyright (c) 2013-2015 EVO Payments International - All Rights Reserved.
  *
 * This software and documentation is subject to and made
 * available only pursuant to the terms of an executed license
@@ -78,6 +78,56 @@ if (!class_exists("guid")) {
  *guid
  */
 class guid {
+}
+}
+
+if (!class_exists("TokenResponse")) {
+/*
+ *TokenResponse
+ */
+class TokenResponse {
+  public $SessionToken; // string
+  public $UserAccessToken; // string
+}
+}
+
+if (!class_exists("ClaimMetaData")) {
+/*
+ *ClaimMetaData
+ */
+class ClaimMetaData {
+  public $ClaimDescription; // string
+  public $ClaimNS; // string
+  public $ClaimScope; // ScopeMetaData
+  public $ClaimType; // ClaimTypeEnum
+  public $ClaimValue; // string
+}
+}
+
+if (!class_exists("ScopeMetaData")) {
+/*
+ *ScopeMetaData
+ */
+class ScopeMetaData {
+  public $AllowableIdentityTypes; // ArrayOfIdentityTypeEnum
+  public $ScopeId; // int
+  public $ScopeName; // string
+}
+}
+
+if (!class_exists("IdentityTypeEnum")) {
+/*
+ *IdentityTypeEnum
+ */
+class IdentityTypeEnum {
+}
+}
+
+if (!class_exists("ClaimTypeEnum")) {
+/*
+ *ClaimTypeEnum
+ */
+class ClaimTypeEnum {
 }
 }
 
@@ -378,6 +428,7 @@ class ApplicationData {
   public $VendorId; // string
   public $EncryptionType; // EncryptionType
   public $DeviceSerialNumber; // string
+  public $EMVTerminalData; // EMVTerminalData
 }
 }
 
@@ -418,6 +469,60 @@ if (!class_exists("EncryptionType")) {
  *EncryptionType
  */
 class EncryptionType {
+}
+}
+
+if (!class_exists("EMVTerminalData")) {
+/*
+ *EMVTerminalData
+ */
+class EMVTerminalData {
+  public $CardDataOutputCapability; // CardDataOutputCapability
+  public $CardRetentionCapability; // boolean
+  public $CardholderAuthenticationCapability; // CardholderAuthenticationCapability
+  public $PINMaxCharacters; // PINMaxCharacters
+  public $TerminalOperator; // TerminalOperator
+  public $TerminalOutputCapability; // TerminalOutputCapability
+}
+}
+
+if (!class_exists("CardDataOutputCapability")) {
+/*
+ *CardDataOutputCapability
+ */
+class CardDataOutputCapability {
+}
+}
+
+if (!class_exists("CardholderAuthenticationCapability")) {
+/*
+ *CardholderAuthenticationCapability
+ */
+class CardholderAuthenticationCapability {
+}
+}
+
+if (!class_exists("PINMaxCharacters")) {
+/*
+ *PINMaxCharacters
+ */
+class PINMaxCharacters {
+}
+}
+
+if (!class_exists("TerminalOperator")) {
+/*
+ *TerminalOperator
+ */
+class TerminalOperator {
+}
+}
+
+if (!class_exists("TerminalOutputCapability")) {
+/*
+ *TerminalOutputCapability
+ */
+class TerminalOutputCapability {
 }
 }
 
@@ -527,6 +632,9 @@ class MerchantProfile {
   public $LastUpdated; // dateTime
   public $MerchantData; // MerchantProfileMerchantData
   public $TransactionData; // MerchantProfileTransactionData
+  public $RestrictedOperations; // ArrayOfTypeRestrictedOperation
+  public $ServiceCredentials; // ServiceCredentials
+  public $HostedPayments; // HostedPayments
 }
 }
 
@@ -638,12 +746,12 @@ if (!class_exists("StoredValueMerchantData")) {
  *StoredValueMerchantData
  */
 class StoredValueMerchantData {
-  public $AgentChain; // string
   public $ClientNumber; // string
   public $IndustryType; // IndustryType
   public $SIC; // string
   public $StoreId; // string
   public $TerminalId; // string
+  public $AgentChain; // string
 }
 }
 
@@ -706,6 +814,34 @@ if (!class_exists("RequestAdvice")) {
  *RequestAdvice
  */
 class RequestAdvice {
+}
+}
+
+if (!class_exists("TypeRestrictedOperation")) {
+/*
+ *TypeRestrictedOperation
+ */
+class TypeRestrictedOperation {
+}
+}
+
+if (!class_exists("ServiceCredentials")) {
+/*
+ *ServiceCredentials
+ */
+class ServiceCredentials {
+  public $Password; // string
+  public $Username; // string
+}
+}
+
+if (!class_exists("HostedPayments")) {
+/*
+ *HostedPayments
+ */
+class HostedPayments {
+  public $Code; // string
+  public $Key; // string
 }
 }
 
@@ -801,63 +937,39 @@ class SaveMerchantProfiles {
 }
 }
 
-if (! class_exists ( "merchantProfiles" )) {
-	class merchantProfiles {
-		public $merchantProfile;
-	}
-}
-
-if (! class_exists ( "SaveMerchantProfilesResponse" )) {
-	/*
+if (!class_exists("SaveMerchantProfilesResponse")) {
+/*
  *SaveMerchantProfilesResponse
  */
 class SaveMerchantProfilesResponse {
 }
 }
 
-if (!class_exists("SignOnWithUsernamePasswordForServiceKey")) {
+if (!class_exists("SignOnWithUsernamePassword")) {
 /*
- *SignOnWithUsernamePasswordForServiceKey
+ *SignOnWithUsernamePassword
  */
-class SignOnWithUsernamePasswordForServiceKey {
+class SignOnWithUsernamePassword {
   public $serviceKey; // string
   public $username; // string
   public $password; // string
 }
 }
 
-if (!class_exists("SignOnWithUsernamePasswordForServiceKeyResponse")) {
+if (!class_exists("SignOnWithUsernamePasswordResponse")) {
 /*
- *SignOnWithUsernamePasswordForServiceKeyResponse
+ *SignOnWithUsernamePasswordResponse
  */
-class SignOnWithUsernamePasswordForServiceKeyResponse {
-  public $SignOnWithUsernamePasswordForServiceKeyResult; // string
+class SignOnWithUsernamePasswordResponse {
+  public $SignOnWithUsernamePasswordResult; // TokenResponse
 }
 }
 
-if (!class_exists("ResetPasswordForServiceKey")) {
+if (!class_exists("ChangePassword")) {
 /*
- *ResetPasswordForServiceKey
+ *ChangePassword
  */
-class ResetPasswordForServiceKey {
-  public $serviceKey; // string
-  public $userName; // string
-}
-}
-
-if (!class_exists("ResetPasswordForServiceKeyResponse")) {
-/*
- *ResetPasswordForServiceKeyResponse
- */
-class ResetPasswordForServiceKeyResponse {
-}
-}
-
-if (!class_exists("ChangePasswordForServiceKey")) {
-/*
- *ChangePasswordForServiceKey
- */
-class ChangePasswordForServiceKey {
+class ChangePassword {
   public $serviceKey; // string
   public $userName; // string
   public $password; // string
@@ -865,19 +977,19 @@ class ChangePasswordForServiceKey {
 }
 }
 
-if (!class_exists("ChangePasswordForServiceKeyResponse")) {
+if (!class_exists("ChangePasswordResponse")) {
 /*
- *ChangePasswordForServiceKeyResponse
+ *ChangePasswordResponse
  */
-class ChangePasswordForServiceKeyResponse {
+class ChangePasswordResponse {
 }
 }
 
-if (!class_exists("ChangeUsernameForServiceKey")) {
+if (!class_exists("ChangeUsername")) {
 /*
- *ChangeUsernameForServiceKey
+ *ChangeUsername
  */
-class ChangeUsernameForServiceKey {
+class ChangeUsername {
   public $serviceKey; // string
   public $userName; // string
   public $password; // string
@@ -885,19 +997,19 @@ class ChangeUsernameForServiceKey {
 }
 }
 
-if (!class_exists("ChangeUsernameForServiceKeyResponse")) {
+if (!class_exists("ChangeUsernameResponse")) {
 /*
- *ChangeUsernameForServiceKeyResponse
+ *ChangeUsernameResponse
  */
-class ChangeUsernameForServiceKeyResponse {
+class ChangeUsernameResponse {
 }
 }
 
-if (!class_exists("ChangeEmailForServiceKey")) {
+if (!class_exists("ChangeEmail")) {
 /*
- *ChangeEmailForServiceKey
+ *ChangeEmail
  */
-class ChangeEmailForServiceKey {
+class ChangeEmail {
   public $serviceKey; // string
   public $userName; // string
   public $password; // string
@@ -905,31 +1017,31 @@ class ChangeEmailForServiceKey {
 }
 }
 
-if (!class_exists("ChangeEmailForServiceKeyResponse")) {
+if (!class_exists("ChangeEmailResponse")) {
 /*
- *ChangeEmailForServiceKeyResponse
+ *ChangeEmailResponse
  */
-class ChangeEmailForServiceKeyResponse {
+class ChangeEmailResponse {
 }
 }
 
-if (!class_exists("GetPasswordExpirationForServiceKey")) {
+if (!class_exists("GetPasswordExpiration")) {
 /*
- *GetPasswordExpirationForServiceKey
+ *GetPasswordExpiration
  */
-class GetPasswordExpirationForServiceKey {
+class GetPasswordExpiration {
   public $serviceKey; // string
   public $userName; // string
   public $password; // string
 }
 }
 
-if (!class_exists("GetPasswordExpirationForServiceKeyResponse")) {
+if (!class_exists("GetPasswordExpirationResponse")) {
 /*
- *GetPasswordExpirationForServiceKeyResponse
+ *GetPasswordExpirationResponse
  */
-class GetPasswordExpirationForServiceKeyResponse {
-  public $GetPasswordExpirationForServiceKeyResult; // dateTime
+class GetPasswordExpirationResponse {
+  public $GetPasswordExpirationResult; // dateTime
 }
 }
 
@@ -950,6 +1062,81 @@ if (!class_exists("ValidateMerchantProfileResponse")) {
  *ValidateMerchantProfileResponse
  */
 class ValidateMerchantProfileResponse {
+}
+}
+
+if (!class_exists("GetAllClaims")) {
+/*
+ *GetAllClaims
+ */
+class GetAllClaims {
+  public $identityToken; // string
+}
+}
+
+if (!class_exists("GetAllClaimsResponse")) {
+/*
+ *GetAllClaimsResponse
+ */
+class GetAllClaimsResponse {
+  public $GetAllClaimsResult; // ArrayOfClaimMetaData
+}
+}
+
+if (!class_exists("GetClaims")) {
+/*
+ *GetClaims
+ */
+class GetClaims {
+  public $identityToken; // string
+  public $claimNSs; // ArrayOfstring
+}
+}
+
+if (!class_exists("GetClaimsResponse")) {
+/*
+ *GetClaimsResponse
+ */
+class GetClaimsResponse {
+  public $GetClaimsResult; // ArrayOfClaimMetaData
+}
+}
+
+if (!class_exists("SignOnAndAddClaims")) {
+/*
+ *SignOnAndAddClaims
+ */
+class SignOnAndAddClaims {
+  public $identityToken; // string
+  public $claims; // ArrayOfClaimMetaData
+}
+}
+
+if (!class_exists("SignOnAndAddClaimsResponse")) {
+/*
+ *SignOnAndAddClaimsResponse
+ */
+class SignOnAndAddClaimsResponse {
+  public $SignOnAndAddClaimsResult; // string
+}
+}
+
+if (!class_exists("DelegatedSignOn")) {
+/*
+ *DelegatedSignOn
+ */
+class DelegatedSignOn {
+  public $identityToken; // string
+  public $onBehalfOfServiceKey; // string
+}
+}
+
+if (!class_exists("DelegatedSignOnResponse")) {
+/*
+ *DelegatedSignOnResponse
+ */
+class DelegatedSignOnResponse {
+  public $DelegatedSignOnResult; // string
 }
 }
 
@@ -997,14 +1184,6 @@ class AuthenticationFault {
 }
 }
 
-if (!class_exists("BadAttemptThresholdExceededFault")) {
-/*
- *BadAttemptThresholdExceededFault
- */
-class BadAttemptThresholdExceededFault {
-}
-}
-
 if (!class_exists("PasswordExpiredFault")) {
 /*
  *PasswordExpiredFault
@@ -1021,6 +1200,14 @@ class OneTimePasswordFault {
 }
 }
 
+if (!class_exists("BadAttemptThresholdExceededFault")) {
+/*
+ *BadAttemptThresholdExceededFault
+ */
+class BadAttemptThresholdExceededFault {
+}
+}
+
 if (!class_exists("LockedByAdminFault")) {
 /*
  *LockedByAdminFault
@@ -1034,14 +1221,6 @@ if (!class_exists("SendEmailFault")) {
  *SendEmailFault
  */
 class SendEmailFault {
-}
-}
-
-if (!class_exists("GeneratePasswordFault")) {
-/*
- *GeneratePasswordFault
- */
-class GeneratePasswordFault {
 }
 }
 
@@ -1066,6 +1245,14 @@ if (!class_exists("InvalidEmailFault")) {
  *InvalidEmailFault
  */
 class InvalidEmailFault {
+}
+}
+
+if (!class_exists("SystemFault")) {
+/*
+ *SystemFault
+ */
+class SystemFault {
 }
 }
 
@@ -1111,7 +1298,7 @@ if (!class_exists("CWSValidationErrorFault")) {
  *CWSValidationErrorFault
  */
 class CWSValidationErrorFault {
-  public $ErrorType; // CWSValidationErrorFault.EErrorType
+  public $ErrorType; // CWSValidationErrorFault_EErrorType
   public $RuleKey; // string
   public $RuleLocationKey; // string
   public $RuleMessage; // string
@@ -1119,9 +1306,9 @@ class CWSValidationErrorFault {
 }
 }
 
-if (!class_exists("CWSValidationErrorFault.EErrorType")) {
+if (!class_exists("CWSValidationErrorFault_EErrorType")) {
 /*
- *CWSValidationErrorFault.EErrorType
+ *CWSValidationErrorFault_EErrorType
  */
 class CWSValidationErrorFault_EErrorType {
 }
@@ -1136,6 +1323,11 @@ class CWSServiceInformation extends SoapClient {
                                     'char' => 'char',
                                     'duration' => 'duration',
                                     'guid' => 'guid',
+                                    'TokenResponse' => 'TokenResponse',
+                                    'ClaimMetaData' => 'ClaimMetaData',
+                                    'ScopeMetaData' => 'ScopeMetaData',
+                                    'IdentityTypeEnum' => 'IdentityTypeEnum',
+                                    'ClaimTypeEnum' => 'ClaimTypeEnum',
                                     'SignOnWithToken' => 'SignOnWithToken',
                                     'SignOnWithTokenResponse' => 'SignOnWithTokenResponse',
                                     'GetServiceInformation' => 'GetServiceInformation',
@@ -1167,6 +1359,12 @@ class CWSServiceInformation extends SoapClient {
                                     'PINCapability' => 'PINCapability',
                                     'ReadCapability' => 'ReadCapability',
                                     'EncryptionType' => 'EncryptionType',
+                                    'EMVTerminalData' => 'EMVTerminalData',
+                                    'CardDataOutputCapability' => 'CardDataOutputCapability',
+                                    'CardholderAuthenticationCapability' => 'CardholderAuthenticationCapability',
+                                    'PINMaxCharacters' => 'PINMaxCharacters',
+                                    'TerminalOperator' => 'TerminalOperator',
+                                    'TerminalOutputCapability' => 'TerminalOutputCapability',
                                     'SaveApplicationDataResponse' => 'SaveApplicationDataResponse',
                                     'GetApplicationData' => 'GetApplicationData',
                                     'GetApplicationDataResponse' => 'GetApplicationDataResponse',
@@ -1194,6 +1392,9 @@ class CWSServiceInformation extends SoapClient {
                                     'EntryMode' => 'EntryMode',
                                     'RequestACI' => 'RequestACI',
                                     'RequestAdvice' => 'RequestAdvice',
+                                    'TypeRestrictedOperation' => 'TypeRestrictedOperation',
+                                    'ServiceCredentials' => 'ServiceCredentials',
+                                    'HostedPayments' => 'HostedPayments',
                                     'GetMerchantProfileIds' => 'GetMerchantProfileIds',
                                     'GetMerchantProfileIdsResponse' => 'GetMerchantProfileIdsResponse',
                                     'GetMerchantProfilesByProfileId' => 'GetMerchantProfilesByProfileId',
@@ -1204,34 +1405,40 @@ class CWSServiceInformation extends SoapClient {
                                     'DeleteMerchantProfileResponse' => 'DeleteMerchantProfileResponse',
                                     'SaveMerchantProfiles' => 'SaveMerchantProfiles',
                                     'SaveMerchantProfilesResponse' => 'SaveMerchantProfilesResponse',
-                                    'SignOnWithUsernamePasswordForServiceKey' => 'SignOnWithUsernamePasswordForServiceKey',
-                                    'SignOnWithUsernamePasswordForServiceKeyResponse' => 'SignOnWithUsernamePasswordForServiceKeyResponse',
-                                    'ResetPasswordForServiceKey' => 'ResetPasswordForServiceKey',
-                                    'ResetPasswordForServiceKeyResponse' => 'ResetPasswordForServiceKeyResponse',
-                                    'ChangePasswordForServiceKey' => 'ChangePasswordForServiceKey',
-                                    'ChangePasswordForServiceKeyResponse' => 'ChangePasswordForServiceKeyResponse',
-                                    'ChangeUsernameForServiceKey' => 'ChangeUsernameForServiceKey',
-                                    'ChangeUsernameForServiceKeyResponse' => 'ChangeUsernameForServiceKeyResponse',
-                                    'ChangeEmailForServiceKey' => 'ChangeEmailForServiceKey',
-                                    'ChangeEmailForServiceKeyResponse' => 'ChangeEmailForServiceKeyResponse',
-                                    'GetPasswordExpirationForServiceKey' => 'GetPasswordExpirationForServiceKey',
-                                    'GetPasswordExpirationForServiceKeyResponse' => 'GetPasswordExpirationForServiceKeyResponse',
+                                    'SignOnWithUsernamePassword' => 'SignOnWithUsernamePassword',
+                                    'SignOnWithUsernamePasswordResponse' => 'SignOnWithUsernamePasswordResponse',
+                                    'ChangePassword' => 'ChangePassword',
+                                    'ChangePasswordResponse' => 'ChangePasswordResponse',
+                                    'ChangeUsername' => 'ChangeUsername',
+                                    'ChangeUsernameResponse' => 'ChangeUsernameResponse',
+                                    'ChangeEmail' => 'ChangeEmail',
+                                    'ChangeEmailResponse' => 'ChangeEmailResponse',
+                                    'GetPasswordExpiration' => 'GetPasswordExpiration',
+                                    'GetPasswordExpirationResponse' => 'GetPasswordExpirationResponse',
                                     'ValidateMerchantProfile' => 'ValidateMerchantProfile',
                                     'ValidateMerchantProfileResponse' => 'ValidateMerchantProfileResponse',
+                                    'GetAllClaims' => 'GetAllClaims',
+                                    'GetAllClaimsResponse' => 'GetAllClaimsResponse',
+                                    'GetClaims' => 'GetClaims',
+                                    'GetClaimsResponse' => 'GetClaimsResponse',
+                                    'SignOnAndAddClaims' => 'SignOnAndAddClaims',
+                                    'SignOnAndAddClaimsResponse' => 'SignOnAndAddClaimsResponse',
+                                    'DelegatedSignOn' => 'DelegatedSignOn',
+                                    'DelegatedSignOnResponse' => 'DelegatedSignOnResponse',
                                     'STSUnavailableFault' => 'STSUnavailableFault',
                                     'BaseFault' => 'BaseFault',
                                     'ExpiredTokenFault' => 'ExpiredTokenFault',
                                     'InvalidTokenFault' => 'InvalidTokenFault',
                                     'AuthenticationFault' => 'AuthenticationFault',
-                                    'BadAttemptThresholdExceededFault' => 'BadAttemptThresholdExceededFault',
                                     'PasswordExpiredFault' => 'PasswordExpiredFault',
                                     'OneTimePasswordFault' => 'OneTimePasswordFault',
+                                    'BadAttemptThresholdExceededFault' => 'BadAttemptThresholdExceededFault',
                                     'LockedByAdminFault' => 'LockedByAdminFault',
                                     'SendEmailFault' => 'SendEmailFault',
-                                    'GeneratePasswordFault' => 'GeneratePasswordFault',
                                     'PasswordInvalidFault' => 'PasswordInvalidFault',
                                     'UserNotFoundFault' => 'UserNotFoundFault',
                                     'InvalidEmailFault' => 'InvalidEmailFault',
+                                    'SystemFault' => 'SystemFault',
                                     'CWSFault' => 'CWSFault',
                                     'CWSBaseFault' => 'CWSBaseFault',
                                     'CWSServiceInformationUnavailableFault' => 'CWSServiceInformationUnavailableFault',
@@ -1267,8 +1474,8 @@ class CWSServiceInformation extends SoapClient {
    * <summary>
             Sign on using an identity token.
             </summary>
-        
-   *     <param name="identityToken">Identity token associated with your service key</param>
+     
+   *        <param name="identityToken">Identity token associated with your service key</param>
  
    *            <returns>Session token</returns> 
    *
@@ -1287,8 +1494,8 @@ class CWSServiceInformation extends SoapClient {
    * <summary>
             Retrieve service information.
             </summary>
-           
-   *  <param name="sessionToken">Session token</param>
+        
+   *     <param name="sessionToken">Session token</param>
             <returns>Service information 
    * associated with the session token</returns> 
    *
@@ -1307,8 +1514,8 @@ class CWSServiceInformation extends SoapClient {
    * <summary>
             Save application configuration data.
             </summary>
-    
-   *         <param name="sessionToken">Session token</param>
+ 
+   *            <param name="sessionToken">Session token</param>
             <param name="applicationData">Application 
    * common configuration data</param>
             <returns>Application profile ID</returns> 
@@ -1379,8 +1586,8 @@ class CWSServiceInformation extends SoapClient {
             <param name="merchantProfileId">Merchant 
    * profile ID</param>
             <param name="tenderType">Tender type</param>
-          
-   *   <returns><c>true</c> if the merchant profile has been initialized</returns> 
+        
+   *     <returns><c>true</c> if the merchant profile has been initialized</returns> 
    *
    * @param IsMerchantProfileInitialized $parameters
    * @return IsMerchantProfileInitializedResponse
@@ -1491,11 +1698,11 @@ class CWSServiceInformation extends SoapClient {
   /*
    * <summary>
             Deletes a specific merchant profile for a Tender Type.
-         
-   *    </summary>
+       
+   *      </summary>
             <param name="sessionToken">Session token</param>
-           
-   *  <param name="merchantProfileId">Merchant profile ID</param>
+       
+   *      <param name="merchantProfileId">Merchant profile ID</param>
             <param name="serviceId">Service 
    * ID</param>
             <param name="tenderType">Tender type</param> 
@@ -1514,11 +1721,11 @@ class CWSServiceInformation extends SoapClient {
   /*
    * <summary>
             Saves one or more merchant profiles for a Tender Type.
-         
-   *    </summary>
+       
+   *      </summary>
             <param name="sessionToken">Session token</param>
-           
-   *  <param name="serviceId">Service ID</param>
+       
+   *      <param name="serviceId">Service ID</param>
             <param name="tenderType">Tender 
    * type</param>
             <param name="merchantProfiles">Merchant profiles</param> 
@@ -1538,40 +1745,20 @@ class CWSServiceInformation extends SoapClient {
    * <summary>
             Sign on using a username and password.
             </summary>
-  
-   *           <param name="serviceKey">Service key to sign on</param>
-            <param name="username">Username 
-   * associated with the specified service key</param>
-            <param name="password">Password 
-   * associated with the specified service key and username</param>
-            <returns>Session 
-   * token</returns> 
-   *
-   * @param SignOnWithUsernamePasswordForServiceKey $parameters
-   * @return SignOnWithUsernamePasswordForServiceKeyResponse
-   */
-  public function SignOnWithUsernamePasswordForServiceKey(SignOnWithUsernamePasswordForServiceKey $parameters) {
-    return $this->__soapCall('SignOnWithUsernamePasswordForServiceKey', array($parameters),       array(
-            'uri' => 'http://schemas.evosnap.com/CWS/v2.0/ServiceInformation',
-            'soapaction' => ''
-           )
-      );
-  }
-
-  /*
-   * <summary>
-            Reset the password for the specified service key and username.
  
-   *            </summary>
-            <param name="serviceKey">Service key</param>
-       
-   *      <param name="userName">User name associated with specified service key</param> 
+   *            <param name="serviceKey">Service key to sign on</param>
+            <param 
+   * name="username">Username associated with the specified service key</param>
+          
+   *   <param name="password">Password associated with the specified service key and username</param>
+ 
+   *            <returns>Session token</returns> 
    *
-   * @param ResetPasswordForServiceKey $parameters
-   * @return ResetPasswordForServiceKeyResponse
+   * @param SignOnWithUsernamePassword $parameters
+   * @return SignOnWithUsernamePasswordResponse
    */
-  public function ResetPasswordForServiceKey(ResetPasswordForServiceKey $parameters) {
-    return $this->__soapCall('ResetPasswordForServiceKey', array($parameters),       array(
+  public function SignOnWithUsernamePassword(SignOnWithUsernamePassword $parameters) {
+    return $this->__soapCall('SignOnWithUsernamePassword', array($parameters),       array(
             'uri' => 'http://schemas.evosnap.com/CWS/v2.0/ServiceInformation',
             'soapaction' => ''
            )
@@ -1584,19 +1771,19 @@ class CWSServiceInformation extends SoapClient {
  
    *            </summary>
             <param name="serviceKey">Service key</param>
-       
-   *      <param name="userName">Username associated with specified service key</param>
-   
-   *          <param name="password">Password currently associated with specified service key 
-   * and username</param>
-            <param name="newPassword">New password to associate with 
-   * specified service key and username</param> 
+     
+   *        <param name="userName">Username associated with specified service key</param>
+ 
+   *            <param name="password">Password currently associated with specified service 
+   * key and username</param>
+            <param name="newPassword">New password to associate 
+   * with specified service key and username</param> 
    *
-   * @param ChangePasswordForServiceKey $parameters
-   * @return ChangePasswordForServiceKeyResponse
+   * @param ChangePassword $parameters
+   * @return ChangePasswordResponse
    */
-  public function ChangePasswordForServiceKey(ChangePasswordForServiceKey $parameters) {
-    return $this->__soapCall('ChangePasswordForServiceKey', array($parameters),       array(
+  public function ChangePassword(ChangePassword $parameters) {
+    return $this->__soapCall('ChangePassword', array($parameters),       array(
             'uri' => 'http://schemas.evosnap.com/CWS/v2.0/ServiceInformation',
             'soapaction' => ''
            )
@@ -1609,19 +1796,19 @@ class CWSServiceInformation extends SoapClient {
  
    *            </summary>
             <param name="serviceKey">Service key</param>
-       
-   *      <param name="userName">Username associated with specified service key</param>
-   
-   *          <param name="password">Password associated with specified service key and username</param>
+     
+   *        <param name="userName">Username associated with specified service key</param>
+ 
+   *            <param name="password">Password associated with specified service key and username</param>
  
    *            <param name="newUsername">New username to associate with specified service 
    * key</param> 
    *
-   * @param ChangeUsernameForServiceKey $parameters
-   * @return ChangeUsernameForServiceKeyResponse
+   * @param ChangeUsername $parameters
+   * @return ChangeUsernameResponse
    */
-  public function ChangeUsernameForServiceKey(ChangeUsernameForServiceKey $parameters) {
-    return $this->__soapCall('ChangeUsernameForServiceKey', array($parameters),       array(
+  public function ChangeUsername(ChangeUsername $parameters) {
+    return $this->__soapCall('ChangeUsername', array($parameters),       array(
             'uri' => 'http://schemas.evosnap.com/CWS/v2.0/ServiceInformation',
             'soapaction' => ''
            )
@@ -1634,19 +1821,19 @@ class CWSServiceInformation extends SoapClient {
  
    *            </summary>
             <param name="serviceKey">Service key</param>
-       
-   *      <param name="userName">Username associated with specified service key</param>
-   
-   *          <param name="password">Password associated with specified service key and username</param>
+     
+   *        <param name="userName">Username associated with specified service key</param>
+ 
+   *            <param name="password">Password associated with specified service key and username</param>
  
    *            <param name="newEmail">New email to associate with specified service key and 
    * username</param> 
    *
-   * @param ChangeEmailForServiceKey $parameters
-   * @return ChangeEmailForServiceKeyResponse
+   * @param ChangeEmail $parameters
+   * @return ChangeEmailResponse
    */
-  public function ChangeEmailForServiceKey(ChangeEmailForServiceKey $parameters) {
-    return $this->__soapCall('ChangeEmailForServiceKey', array($parameters),       array(
+  public function ChangeEmail(ChangeEmail $parameters) {
+    return $this->__soapCall('ChangeEmail', array($parameters),       array(
             'uri' => 'http://schemas.evosnap.com/CWS/v2.0/ServiceInformation',
             'soapaction' => ''
            )
@@ -1659,17 +1846,17 @@ class CWSServiceInformation extends SoapClient {
  
    *            </summary>
             <param name="serviceKey">Service key</param>
-       
-   *      <param name="userName">Username associated with specified service key</param>
-   
-   *          <param name="password">Password associated with specified service key and username</param> 
+     
+   *        <param name="userName">Username associated with specified service key</param>
+ 
+   *            <param name="password">Password associated with specified service key and username</param> 
    * 
    *
-   * @param GetPasswordExpirationForServiceKey $parameters
-   * @return GetPasswordExpirationForServiceKeyResponse
+   * @param GetPasswordExpiration $parameters
+   * @return GetPasswordExpirationResponse
    */
-  public function GetPasswordExpirationForServiceKey(GetPasswordExpirationForServiceKey $parameters) {
-    return $this->__soapCall('GetPasswordExpirationForServiceKey', array($parameters),       array(
+  public function GetPasswordExpiration(GetPasswordExpiration $parameters) {
+    return $this->__soapCall('GetPasswordExpiration', array($parameters),       array(
             'uri' => 'http://schemas.evosnap.com/CWS/v2.0/ServiceInformation',
             'soapaction' => ''
            )
@@ -1701,6 +1888,103 @@ class CWSServiceInformation extends SoapClient {
    */
   public function ValidateMerchantProfile(ValidateMerchantProfile $parameters) {
     return $this->__soapCall('ValidateMerchantProfile', array($parameters),       array(
+            'uri' => 'http://schemas.evosnap.com/CWS/v2.0/ServiceInformation',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /*
+   * <summary>
+            Get a list of claims given a pair of security tokens. The claims 
+   * returned are presented as a list of ClaimMetaData objects which is a pairing of the claim 
+   * namespace and the claim value.
+            </summary>
+            <param name="identityToken">Identity 
+   * token associated with your service key</param>
+            <returns>A list of claim namespace 
+   * and value pairs.</returns> 
+   *
+   * @param GetAllClaims $parameters
+   * @return GetAllClaimsResponse
+   */
+  public function GetAllClaims(GetAllClaims $parameters) {
+    return $this->__soapCall('GetAllClaims', array($parameters),       array(
+            'uri' => 'http://schemas.evosnap.com/CWS/v2.0/ServiceInformation',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /*
+   * <summary>
+            Get a list of claims, within a specific list of claim namespaces, 
+   * given a pair of security tokens. The claims returned are presented as a list of values 
+   * that are sequenced to collate with the order of the 
+            list of namespaces passed 
+   * in.
+            </summary>
+            <param name="identityToken">Identity token associated 
+   * with your service key</param>
+            <param name="claimNSs">A list of claims namespaces 
+   * to limit the list of claims returned. The returned list if claim values will be in the 
+   * same order as specified in this list.</param>
+            <returns>A list of claims values.</returns> 
+   * 
+   *
+   * @param GetClaims $parameters
+   * @return GetClaimsResponse
+   */
+  public function GetClaims(GetClaims $parameters) {
+    return $this->__soapCall('GetClaims', array($parameters),       array(
+            'uri' => 'http://schemas.evosnap.com/CWS/v2.0/ServiceInformation',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /*
+   * <summary>
+             Allows a service key identity token holder to add dynamic claims 
+   * as allowed for their service key
+             to the resultant session token
+       
+   *      </summary>
+             <param name="identityToken">Identity token associated with 
+   * your service key</param>
+            <param name="claims">claims to add to the generated 
+   * session token</param>
+            <returns>session token</returns> 
+   *
+   * @param SignOnAndAddClaims $parameters
+   * @return SignOnAndAddClaimsResponse
+   */
+  public function SignOnAndAddClaims(SignOnAndAddClaims $parameters) {
+    return $this->__soapCall('SignOnAndAddClaims', array($parameters),       array(
+            'uri' => 'http://schemas.evosnap.com/CWS/v2.0/ServiceInformation',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /*
+   * <summary>
+             Allows an initiator (IDT) to receive a session token for onBehalf 
+   * SK and add dynamic claims as 
+             allowed for their service key
+           
+   *  </summary>
+             <param name="identityToken">Identity token associated with your 
+   * service key</param>
+            <param name="onBehalfOfServiceKey">Service key delegating 
+   * permissions.</param>
+            <returns>session token</returns> 
+   *
+   * @param DelegatedSignOn $parameters
+   * @return DelegatedSignOnResponse
+   */
+  public function DelegatedSignOn(DelegatedSignOn $parameters) {
+    return $this->__soapCall('DelegatedSignOn', array($parameters),       array(
             'uri' => 'http://schemas.evosnap.com/CWS/v2.0/ServiceInformation',
             'soapaction' => ''
            )

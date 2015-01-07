@@ -1,30 +1,30 @@
 <?php
-/* Copyright (c) 2013 EVO Payments International - All Rights Reserved.
+/* Copyright (c) 2013-2015 EVO Payments International - All Rights Reserved.
  *
- * This software and documentation is subject to and made
- * available only pursuant to the terms of an executed license
- * agreement, and may be used only in accordance with the terms
- * of said agreement. This software may not, in whole or in part,
- * be copied, photocopied, reproduced, translated, or reduced to
- * any electronic medium or machine-readable form without
- * prior consent, in writing, from EVO Payments International
- *
- * Use, duplication or disclosure by the U.S. Government is subject
- * to restrictions set forth in an executed license agreement
- * and in subparagraph (c)(1) of the Commercial Computer
- * Software-Restricted Rights Clause at FAR 52.227-19; subparagraph
- * (c)(1)(ii) of the Rights in Technical Data and Computer Software
- * clause at DFARS 252.227-7013, subparagraph (d) of the Commercial
- * Computer Software--Licensing clause at NASA FAR supplement
- * 16-52.227-86; or their equivalent.
- *
- * Information in this software is subject to change without notice
- * and does not represent a commitment on the part of EVO Payments International.
- *
- * Sample Code is for reference Only and is intended to be used for educational purposes. It's the responsibility of
- * the software company to properly integrate into thier solution code that best meets thier production needs.
- */
- 
+* This software and documentation is subject to and made
+* available only pursuant to the terms of an executed license
+* agreement, and may be used only in accordance with the terms
+* of said agreement. This software may not, in whole or in part,
+* be copied, photocopied, reproduced, translated, or reduced to
+* any electronic medium or machine-readable form without
+* prior consent, in writing, from EVO Payments International
+*
+* Use, duplication or disclosure by the U.S. Government is subject
+* to restrictions set forth in an executed license agreement
+* and in subparagraph (c)(1) of the Commercial Computer
+* Software-Restricted Rights Clause at FAR 52.227-19; subparagraph
+* (c)(1)(ii) of the Rights in Technical Data and Computer Software
+* clause at DFARS 252.227-7013, subparagraph (d) of the Commercial
+* Computer Software--Licensing clause at NASA FAR supplement
+* 16-52.227-86; or their equivalent.
+*
+* Information in this software is subject to change without notice
+* and does not represent a commitment on the part of EVO Payments International.
+*
+* Sample Code is for reference Only and is intended to be used for educational purposes. It's the responsibility of
+* the software company to properly integrate into thier solution code that best meets thier production needs.
+*/
+
 /*
  * CWSTransactionManagement class file
  * 
@@ -121,42 +121,15 @@ class DSBaseFault {
 }
 }
 
-if (!class_exists("Response")) {
+if (!class_exists("Resubmit")) {
 /*
- *Response
+ *Resubmit
  */
-class Response {
-  public $Status; // Status
-  public $StatusCode; // string
-  public $StatusMessage; // string
+class Resubmit {
   public $TransactionId; // string
-  public $OriginatorTransactionId; // string
-  public $ServiceTransactionId; // string
-  public $ServiceTransactionDateTime; // ServiceTransactionDateTime
+  public $ResubmitReason; // ResubmitReason
+  public $CVV; // string
   public $Addendum; // Addendum
-  public $CaptureState; // CaptureState
-  public $TransactionState; // TransactionState
-  public $IsAcknowledged; // boolean
-  public $Reference; // string
-}
-}
-
-if (!class_exists("Status")) {
-/*
- *Status
- */
-class Status {
-}
-}
-
-if (!class_exists("ServiceTransactionDateTime")) {
-/*
- *ServiceTransactionDateTime
- */
-class ServiceTransactionDateTime {
-  public $Date; // string
-  public $Time; // string
-  public $TimeZone; // string
 }
 }
 
@@ -178,60 +151,71 @@ class Unmanaged {
 }
 }
 
-if (!class_exists("CaptureState")) {
+if (!class_exists("TransactionTenderData")) {
 /*
- *CaptureState
+ *TransactionTenderData
  */
-class CaptureState {
+class TransactionTenderData {
+  public $PaymentAccountDataToken; // string
+  public $SecurePaymentAccountData; // string
+  public $EncryptionKeyId; // string
+  public $SwipeStatus; // string
+  public $DeviceSerialNumber; // string
 }
 }
 
-if (!class_exists("TransactionState")) {
+if (!class_exists("TypeISOCountryCodeA3")) {
 /*
- *TransactionState
+ *TypeISOCountryCodeA3
  */
-class TransactionState {
+class TypeISOCountryCodeA3 {
 }
 }
 
-if (!class_exists("IndustryType")) {
+if (!class_exists("CVDataProvided")) {
 /*
- *IndustryType
+ *CVDataProvided
  */
-class IndustryType {
+class CVDataProvided {
 }
 }
 
-if (!class_exists("SummaryData")) {
+if (!class_exists("EMVData")) {
 /*
- *SummaryData
+ *EMVData
  */
-class SummaryData {
-  public $CashBackTotals; // SummaryTotals
-  public $CreditReturnTotals; // SummaryTotals
-  public $CreditTotals; // SummaryTotals
-  public $DebitReturnTotals; // SummaryTotals
-  public $DebitTotals; // SummaryTotals
-  public $NetTotals; // SummaryTotals
-  public $VoidTotals; // SummaryTotals
-}
-}
-
-if (!class_exists("SummaryTotals")) {
-/*
- *SummaryTotals
- */
-class SummaryTotals {
-  public $NetAmount; // decimal
-  public $Count; // int
-}
-}
-
-if (!class_exists("CVResult")) {
-/*
- *CVResult
- */
-class CVResult {
+class EMVData {
+  public $ApplicationId; // string
+  public $ApplicationInterchangeProfile; // string
+  public $ApplicationTransactionCount; // string
+  public $ApplicationUsageControl; // string
+  public $ApplicationVersionNumber; // string
+  public $AuthorizationAmount; // string
+  public $AuthorizationResponseCode; // string
+  public $CVMList; // string
+  public $CVMResults; // string
+  public $CardAuthenticationReliabilityIndex; // string
+  public $CardAuthenticationResultsCode; // string
+  public $CashBackAmount; // string
+  public $ChipConditionCode; // string
+  public $CryptogramInformationData; // string
+  public $Cryptogram; // string
+  public $InterfaceDeviceSerialNumber; // string
+  public $IssuerActionDefault; // string
+  public $IssuerActionDenial; // string
+  public $IssuerActionOnline; // string
+  public $IssuerApplicationData; // string
+  public $IssuerScriptResults; // string
+  public $LocalTransactionDate; // string
+  public $TerminalCapability; // string
+  public $TerminalCountryCode; // string
+  public $TerminalType; // string
+  public $TerminalVerifyResult; // string
+  public $TransactionCategoryCode; // string
+  public $CurrencyCode; // string
+  public $SequenceNumber; // string
+  public $TransactionType; // string
+  public $UnpredictableNumber; // string
 }
 }
 
@@ -301,14 +285,6 @@ class AddressInfo {
 }
 }
 
-if (!class_exists("TypeISOCountryCodeA3")) {
-/*
- *TypeISOCountryCodeA3
- */
-class TypeISOCountryCodeA3 {
-}
-}
-
 if (!class_exists("InternationalAddressInfo")) {
 /*
  *InternationalAddressInfo
@@ -373,27 +349,6 @@ class TransactionReportingData {
 }
 }
 
-if (!class_exists("TransactionTenderData")) {
-/*
- *TransactionTenderData
- */
-class TransactionTenderData {
-  public $PaymentAccountDataToken; // string
-  public $SecurePaymentAccountData; // string
-  public $EncryptionKeyId; // string
-  public $SwipeStatus; // string
-  public $DeviceSerialNumber; // string
-}
-}
-
-if (!class_exists("CVDataProvided")) {
-/*
- *CVDataProvided
- */
-class CVDataProvided {
-}
-}
-
 if (!class_exists("TransactionData")) {
 /*
  *TransactionData
@@ -404,6 +359,7 @@ class TransactionData {
   public $TransactionDateTime; // dateTime
   public $CampaignId; // string
   public $Reference; // string
+  public $DiscountData; // DiscountData
 }
 }
 
@@ -412,6 +368,17 @@ if (!class_exists("TypeISOCurrencyCodeA3")) {
  *TypeISOCurrencyCodeA3
  */
 class TypeISOCurrencyCodeA3 {
+}
+}
+
+if (!class_exists("DiscountData")) {
+/*
+ *DiscountData
+ */
+class DiscountData {
+  public $CustomerReferenceId; // string
+  public $DiscountedAmount; // decimal
+  public $PromotionCodes; // ArrayOfstring
 }
 }
 
@@ -462,10 +429,106 @@ class AlternativeMerchantData {
   public $CustomerServiceInternet; // string
   public $CustomerServicePhone; // string
   public $Description; // string
-  public $SIC; // string
   public $Address; // AddressInfo
   public $MerchantId; // string
   public $Name; // string
+  public $SIC; // string
+}
+}
+
+if (!class_exists("Response")) {
+/*
+ *Response
+ */
+class Response {
+  public $Status; // Status
+  public $StatusCode; // string
+  public $StatusMessage; // string
+  public $TransactionId; // string
+  public $OriginatorTransactionId; // string
+  public $ServiceTransactionId; // string
+  public $ServiceTransactionDateTime; // ServiceTransactionDateTime
+  public $Addendum; // Addendum
+  public $CaptureState; // CaptureState
+  public $TransactionState; // TransactionState
+  public $IsAcknowledged; // boolean
+  public $Reference; // string
+}
+}
+
+if (!class_exists("Status")) {
+/*
+ *Status
+ */
+class Status {
+}
+}
+
+if (!class_exists("ServiceTransactionDateTime")) {
+/*
+ *ServiceTransactionDateTime
+ */
+class ServiceTransactionDateTime {
+  public $Date; // string
+  public $Time; // string
+  public $TimeZone; // string
+}
+}
+
+if (!class_exists("CaptureState")) {
+/*
+ *CaptureState
+ */
+class CaptureState {
+}
+}
+
+if (!class_exists("TransactionState")) {
+/*
+ *TransactionState
+ */
+class TransactionState {
+}
+}
+
+if (!class_exists("IndustryType")) {
+/*
+ *IndustryType
+ */
+class IndustryType {
+}
+}
+
+if (!class_exists("SummaryData")) {
+/*
+ *SummaryData
+ */
+class SummaryData {
+  public $CashBackTotals; // SummaryTotals
+  public $CreditReturnTotals; // SummaryTotals
+  public $CreditTotals; // SummaryTotals
+  public $DebitReturnTotals; // SummaryTotals
+  public $DebitTotals; // SummaryTotals
+  public $NetTotals; // SummaryTotals
+  public $VoidTotals; // SummaryTotals
+}
+}
+
+if (!class_exists("SummaryTotals")) {
+/*
+ *SummaryTotals
+ */
+class SummaryTotals {
+  public $NetAmount; // decimal
+  public $Count; // int
+}
+}
+
+if (!class_exists("CVResult")) {
+/*
+ *CVResult
+ */
+class CVResult {
 }
 }
 
@@ -510,18 +573,6 @@ class Manage {
 }
 }
 
-if (!class_exists("Resubmit")) {
-/*
- *Resubmit
- */
-class Resubmit {
-  public $TransactionId; // string
-  public $ResubmitReason; // ResubmitReason
-  public $CVV; // string
-  public $Addendum; // Addendum
-}
-}
-
 if (!class_exists("Adjust")) {
 /*
  *Adjust
@@ -534,240 +585,20 @@ class Adjust {
 }
 }
 
-if (!class_exists("BankcardTransactionResponse")) {
+if (!class_exists("Resubmit3DSecure")) {
 /*
- *BankcardTransactionResponse
+ *Resubmit3DSecure
  */
-class BankcardTransactionResponse {
-  public $Amount; // decimal
-  public $CardType; // TypeCardType
-  public $FeeAmount; // decimal
-  public $ApprovalCode; // string
-  public $AVSResult; // AVSResult
-  public $BatchId; // string
-  public $CVResult; // CVResult
-  public $CardLevel; // string
-  public $DowngradeCode; // string
-  public $MaskedPAN; // string
-  public $PaymentAccountDataToken; // string
-  public $RetrievalReferenceNumber; // string
-  public $Resubmit; // Resubmit
-  public $SettlementDate; // dateTime
-  public $FinalBalance; // decimal
-  public $OrderId; // string
-  public $CashBackAmount; // decimal
-  public $PrepaidCard; // PrepaidCard
-  public $Expire; // string
-  public $ErrorType; // string
-  public $AuthorizationServerUrl; // string
-  public $PaymentAuthorizationRequest; // string
-  public $ProcessedAs3D; // boolean
+class Resubmit3DSecure {
+  public $PaymentAuthorizationResponse; // string
 }
 }
 
-if (!class_exists("BankcardCaptureResponse")) {
+if (!class_exists("ResubmitReason")) {
 /*
- *BankcardCaptureResponse
+ *ResubmitReason
  */
-class BankcardCaptureResponse {
-  public $BatchId; // string
-  public $IndustryType; // IndustryType
-  public $TransactionSummaryData; // TransactionSummaryData
-  public $PrepaidCard; // PrepaidCard
-  public $ErrorType; // string
-}
-}
-
-if (!class_exists("TransactionSummaryData")) {
-/*
- *TransactionSummaryData
- */
-class TransactionSummaryData {
-  public $CashBackTotals; // Totals
-  public $NetTotals; // Totals
-  public $ReturnTotals; // Totals
-  public $SaleTotals; // Totals
-  public $VoidTotals; // Totals
-  public $PINDebitReturnTotals; // Totals
-  public $PINDebitSaleTotals; // Totals
-}
-}
-
-if (!class_exists("Totals")) {
-/*
- *Totals
- */
-class Totals {
-  public $NetAmount; // decimal
-  public $Count; // int
-}
-}
-
-if (!class_exists("PrepaidCard")) {
-/*
- *PrepaidCard
- */
-class PrepaidCard {
-}
-}
-
-if (!class_exists("TypeCardType")) {
-/*
- *TypeCardType
- */
-class TypeCardType {
-}
-}
-
-if (!class_exists("AVSResult")) {
-/*
- *AVSResult
- */
-class AVSResult {
-  public $ActualResult; // string
-  public $AddressResult; // AddressResult
-  public $CountryResult; // CountryResult
-  public $StateResult; // StateResult
-  public $PostalCodeResult; // PostalCodeResult
-  public $PhoneResult; // PhoneResult
-  public $CardholderNameResult; // CardholderNameResult
-  public $CityResult; // CityResult
-}
-}
-
-if (!class_exists("AddressResult")) {
-/*
- *AddressResult
- */
-class AddressResult {
-}
-}
-
-if (!class_exists("CountryResult")) {
-/*
- *CountryResult
- */
-class CountryResult {
-}
-}
-
-if (!class_exists("StateResult")) {
-/*
- *StateResult
- */
-class StateResult {
-}
-}
-
-if (!class_exists("PostalCodeResult")) {
-/*
- *PostalCodeResult
- */
-class PostalCodeResult {
-}
-}
-
-if (!class_exists("PhoneResult")) {
-/*
- *PhoneResult
- */
-class PhoneResult {
-}
-}
-
-if (!class_exists("CardholderNameResult")) {
-/*
- *CardholderNameResult
- */
-class CardholderNameResult {
-}
-}
-
-if (!class_exists("CityResult")) {
-/*
- *CityResult
- */
-class CityResult {
-}
-}
-
-if (!class_exists("Resubmit")) {
-/*
- *Resubmit
- */
-class Resubmit {
-}
-}
-
-if (!class_exists("AdviceResponse")) {
-/*
- *AdviceResponse
- */
-class AdviceResponse {
-}
-}
-
-if (!class_exists("CommercialCardResponse")) {
-/*
- *CommercialCardResponse
- */
-class CommercialCardResponse {
-}
-}
-
-if (!class_exists("BankcardTransaction")) {
-/*
- *BankcardTransaction
- */
-class BankcardTransaction {
-  public $ApplicationConfigurationData; // BankcardApplicationConfigurationData
-  public $TenderData; // BankcardTenderData
-  public $TransactionData; // BankcardTransactionData
-}
-}
-
-if (!class_exists("BankcardApplicationConfigurationData")) {
-/*
- *BankcardApplicationConfigurationData
- */
-class BankcardApplicationConfigurationData {
-  public $ApplicationAttended; // boolean
-  public $ApplicationLocation; // ApplicationLocation
-  public $HardwareType; // HardwareType
-  public $PINCapability; // PINCapability
-  public $ReadCapability; // ReadCapability
-}
-}
-
-if (!class_exists("ApplicationLocation")) {
-/*
- *ApplicationLocation
- */
-class ApplicationLocation {
-}
-}
-
-if (!class_exists("HardwareType")) {
-/*
- *HardwareType
- */
-class HardwareType {
-}
-}
-
-if (!class_exists("PINCapability")) {
-/*
- *PINCapability
- */
-class PINCapability {
-}
-}
-
-if (!class_exists("ReadCapability")) {
-/*
- *ReadCapability
- */
-class ReadCapability {
+class ResubmitReason {
 }
 }
 
@@ -779,6 +610,8 @@ class BankcardTenderData {
   public $CardData; // CardData
   public $CardSecurityData; // CardSecurityData
   public $EcommerceSecurityData; // EcommerceSecurityData
+  public $CardholderIdentification; // string
+  public $CardholderIdType; // TypeCardholderId
 }
 }
 
@@ -793,6 +626,15 @@ class CardData {
   public $Expire; // string
   public $Track1Data; // string
   public $Track2Data; // string
+  public $CardSequenceNumber; // string
+}
+}
+
+if (!class_exists("TypeCardType")) {
+/*
+ *TypeCardType
+ */
+class TypeCardType {
 }
 }
 
@@ -873,6 +715,125 @@ class TokenIndicator {
 }
 }
 
+if (!class_exists("TypeCardholderId")) {
+/*
+ *TypeCardholderId
+ */
+class TypeCardholderId {
+}
+}
+
+if (!class_exists("BankcardTransaction")) {
+/*
+ *BankcardTransaction
+ */
+class BankcardTransaction {
+  public $ApplicationConfigurationData; // BankcardApplicationConfigurationData
+  public $TenderData; // BankcardTenderData
+  public $TransactionData; // BankcardTransactionData
+}
+}
+
+if (!class_exists("BankcardApplicationConfigurationData")) {
+/*
+ *BankcardApplicationConfigurationData
+ */
+class BankcardApplicationConfigurationData {
+  public $ApplicationAttended; // boolean
+  public $ApplicationLocation; // ApplicationLocation
+  public $HardwareType; // HardwareType
+  public $PINCapability; // PINCapability
+  public $ReadCapability; // ReadCapability
+  public $EMVTerminalData; // EMVTerminalData
+}
+}
+
+if (!class_exists("ApplicationLocation")) {
+/*
+ *ApplicationLocation
+ */
+class ApplicationLocation {
+}
+}
+
+if (!class_exists("HardwareType")) {
+/*
+ *HardwareType
+ */
+class HardwareType {
+}
+}
+
+if (!class_exists("PINCapability")) {
+/*
+ *PINCapability
+ */
+class PINCapability {
+}
+}
+
+if (!class_exists("ReadCapability")) {
+/*
+ *ReadCapability
+ */
+class ReadCapability {
+}
+}
+
+if (!class_exists("EMVTerminalData")) {
+/*
+ *EMVTerminalData
+ */
+class EMVTerminalData {
+  public $CardDataOutputCapability; // CardDataOutputCapability
+  public $CardRetentionCapability; // boolean
+  public $CardholderAuthenticationCapability; // CardholderAuthenticationCapability
+  public $PINMaxCharacters; // PINMaxCharacters
+  public $TerminalOperator; // TerminalOperator
+  public $TerminalOutputCapability; // TerminalOutputCapability
+}
+}
+
+if (!class_exists("CardDataOutputCapability")) {
+/*
+ *CardDataOutputCapability
+ */
+class CardDataOutputCapability {
+}
+}
+
+if (!class_exists("CardholderAuthenticationCapability")) {
+/*
+ *CardholderAuthenticationCapability
+ */
+class CardholderAuthenticationCapability {
+}
+}
+
+if (!class_exists("PINMaxCharacters")) {
+/*
+ *PINMaxCharacters
+ */
+class PINMaxCharacters {
+}
+}
+
+if (!class_exists("TerminalOperator")) {
+/*
+ *TerminalOperator
+ */
+class TerminalOperator {
+}
+}
+
+if (!class_exists("TerminalOutputCapability")) {
+/*
+ *TerminalOutputCapability
+ */
+class TerminalOutputCapability {
+}
+}
+
 if (!class_exists("BankcardTransactionData")) {
 /*
  *BankcardTransactionData
@@ -901,6 +862,8 @@ class BankcardTransactionData {
   public $IsQuasiCash; // boolean
   public $TransactionCode; // TransactionCode
   public $Is3DSecure; // boolean
+  public $CardholderAuthenticationEntity; // TypeCardholderAuthenticationEntity
+  public $CardPresence; // boolean
 }
 }
 
@@ -1150,6 +1113,211 @@ class TransactionCode {
 }
 }
 
+if (!class_exists("TypeCardholderAuthenticationEntity")) {
+/*
+ *TypeCardholderAuthenticationEntity
+ */
+class TypeCardholderAuthenticationEntity {
+}
+}
+
+if (!class_exists("BankcardTransactionResponse")) {
+/*
+ *BankcardTransactionResponse
+ */
+class BankcardTransactionResponse {
+  public $Amount; // decimal
+  public $CardType; // TypeCardType
+  public $FeeAmount; // decimal
+  public $ApprovalCode; // string
+  public $AVSResult; // AVSResult
+  public $BatchId; // string
+  public $CVResult; // CVResult
+  public $CardLevel; // string
+  public $DowngradeCode; // string
+  public $MaskedPAN; // string
+  public $PaymentAccountDataToken; // string
+  public $RetrievalReferenceNumber; // string
+  public $Resubmit; // Resubmit
+  public $SettlementDate; // dateTime
+  public $FinalBalance; // decimal
+  public $OrderId; // string
+  public $CashBackAmount; // decimal
+  public $PrepaidCard; // PrepaidCard
+  public $Expire; // string
+  public $ErrorType; // string
+  public $AuthorizationServerUrl; // string
+  public $PaymentAuthorizationRequest; // string
+  public $ProcessedAs3D; // boolean
+  public $EMVDataResponse; // EMVDataResponse
+  public $Level3Added; // TypeLevel3Added
+}
+}
+
+if (!class_exists("BankcardCaptureResponse")) {
+/*
+ *BankcardCaptureResponse
+ */
+class BankcardCaptureResponse {
+  public $BatchId; // string
+  public $IndustryType; // IndustryType
+  public $TransactionSummaryData; // TransactionSummaryData
+  public $PrepaidCard; // PrepaidCard
+  public $ErrorType; // string
+}
+}
+
+if (!class_exists("TransactionSummaryData")) {
+/*
+ *TransactionSummaryData
+ */
+class TransactionSummaryData {
+  public $CashBackTotals; // Totals
+  public $NetTotals; // Totals
+  public $ReturnTotals; // Totals
+  public $SaleTotals; // Totals
+  public $VoidTotals; // Totals
+  public $PINDebitReturnTotals; // Totals
+  public $PINDebitSaleTotals; // Totals
+}
+}
+
+if (!class_exists("Totals")) {
+/*
+ *Totals
+ */
+class Totals {
+  public $NetAmount; // decimal
+  public $Count; // int
+}
+}
+
+if (!class_exists("PrepaidCard")) {
+/*
+ *PrepaidCard
+ */
+class PrepaidCard {
+}
+}
+
+if (!class_exists("AdviceResponse")) {
+/*
+ *AdviceResponse
+ */
+class AdviceResponse {
+}
+}
+
+if (!class_exists("CommercialCardResponse")) {
+/*
+ *CommercialCardResponse
+ */
+class CommercialCardResponse {
+}
+}
+
+if (!class_exists("AVSResult")) {
+/*
+ *AVSResult
+ */
+class AVSResult {
+  public $ActualResult; // string
+  public $AddressResult; // AddressResult
+  public $CountryResult; // CountryResult
+  public $StateResult; // StateResult
+  public $PostalCodeResult; // PostalCodeResult
+  public $PhoneResult; // PhoneResult
+  public $CardholderNameResult; // CardholderNameResult
+  public $CityResult; // CityResult
+}
+}
+
+if (!class_exists("AddressResult")) {
+/*
+ *AddressResult
+ */
+class AddressResult {
+}
+}
+
+if (!class_exists("CountryResult")) {
+/*
+ *CountryResult
+ */
+class CountryResult {
+}
+}
+
+if (!class_exists("StateResult")) {
+/*
+ *StateResult
+ */
+class StateResult {
+}
+}
+
+if (!class_exists("PostalCodeResult")) {
+/*
+ *PostalCodeResult
+ */
+class PostalCodeResult {
+}
+}
+
+if (!class_exists("PhoneResult")) {
+/*
+ *PhoneResult
+ */
+class PhoneResult {
+}
+}
+
+if (!class_exists("CardholderNameResult")) {
+/*
+ *CardholderNameResult
+ */
+class CardholderNameResult {
+}
+}
+
+if (!class_exists("CityResult")) {
+/*
+ *CityResult
+ */
+class CityResult {
+}
+}
+
+if (!class_exists("Resubmit")) {
+/*
+ *Resubmit
+ */
+class Resubmit {
+}
+}
+
+if (!class_exists("EMVDataResponse")) {
+/*
+ *EMVDataResponse
+ */
+class EMVDataResponse {
+  public $ApplicationTransactionCount; // string
+  public $CardAuthenticationResultsCode; // string
+  public $IssuerAuthenticationData; // string
+  public $IssuerScriptTemplate1; // string
+  public $IssuerScriptTemplate2; // string
+  public $ResponseCode; // string
+}
+}
+
+if (!class_exists("TypeLevel3Added")) {
+/*
+ *TypeLevel3Added
+ */
+class TypeLevel3Added {
+}
+}
+
 if (!class_exists("BankcardReturn")) {
 /*
  *BankcardReturn
@@ -1171,6 +1339,7 @@ class BankcardUndo {
   public $TenderData; // BankcardTenderData
   public $ForceVoid; // boolean
   public $TransactionCode; // TransactionCode
+  public $UndoReason; // Reason
 }
 }
 
@@ -1179,6 +1348,14 @@ if (!class_exists("PINDebitUndoReason")) {
  *PINDebitUndoReason
  */
 class PINDebitUndoReason {
+}
+}
+
+if (!class_exists("Reason")) {
+/*
+ *Reason
+ */
+class Reason {
 }
 }
 
@@ -1202,20 +1379,53 @@ class ChargeType {
 }
 }
 
-if (!class_exists("Resubmit3DSecure")) {
+if (!class_exists("TokenResponse")) {
 /*
- *Resubmit3DSecure
+ *TokenResponse
  */
-class Resubmit3DSecure {
-  public $PaymentAuthorizationResponse; // string
+class TokenResponse {
+  public $SessionToken; // string
+  public $UserAccessToken; // string
 }
 }
 
-if (!class_exists("ResubmitReason")) {
+if (!class_exists("ClaimMetaData")) {
 /*
- *ResubmitReason
+ *ClaimMetaData
  */
-class ResubmitReason {
+class ClaimMetaData {
+  public $ClaimDescription; // string
+  public $ClaimNS; // string
+  public $ClaimScope; // ScopeMetaData
+  public $ClaimType; // ClaimTypeEnum
+  public $ClaimValue; // string
+}
+}
+
+if (!class_exists("ScopeMetaData")) {
+/*
+ *ScopeMetaData
+ */
+class ScopeMetaData {
+  public $AllowableIdentityTypes; // ArrayOfIdentityTypeEnum
+  public $ScopeId; // int
+  public $ScopeName; // string
+}
+}
+
+if (!class_exists("IdentityTypeEnum")) {
+/*
+ *IdentityTypeEnum
+ */
+class IdentityTypeEnum {
+}
+}
+
+if (!class_exists("ClaimTypeEnum")) {
+/*
+ *ClaimTypeEnum
+ */
+class ClaimTypeEnum {
 }
 }
 
@@ -1516,6 +1726,7 @@ class ApplicationData {
   public $VendorId; // string
   public $EncryptionType; // EncryptionType
   public $DeviceSerialNumber; // string
+  public $EMVTerminalData; // EMVTerminalData
 }
 }
 
@@ -1556,6 +1767,60 @@ if (!class_exists("EncryptionType")) {
  *EncryptionType
  */
 class EncryptionType {
+}
+}
+
+if (!class_exists("EMVTerminalData")) {
+/*
+ *EMVTerminalData
+ */
+class EMVTerminalData {
+  public $CardDataOutputCapability; // CardDataOutputCapability
+  public $CardRetentionCapability; // boolean
+  public $CardholderAuthenticationCapability; // CardholderAuthenticationCapability
+  public $PINMaxCharacters; // PINMaxCharacters
+  public $TerminalOperator; // TerminalOperator
+  public $TerminalOutputCapability; // TerminalOutputCapability
+}
+}
+
+if (!class_exists("CardDataOutputCapability")) {
+/*
+ *CardDataOutputCapability
+ */
+class CardDataOutputCapability {
+}
+}
+
+if (!class_exists("CardholderAuthenticationCapability")) {
+/*
+ *CardholderAuthenticationCapability
+ */
+class CardholderAuthenticationCapability {
+}
+}
+
+if (!class_exists("PINMaxCharacters")) {
+/*
+ *PINMaxCharacters
+ */
+class PINMaxCharacters {
+}
+}
+
+if (!class_exists("TerminalOperator")) {
+/*
+ *TerminalOperator
+ */
+class TerminalOperator {
+}
+}
+
+if (!class_exists("TerminalOutputCapability")) {
+/*
+ *TerminalOutputCapability
+ */
+class TerminalOutputCapability {
 }
 }
 
@@ -1665,6 +1930,9 @@ class MerchantProfile {
   public $LastUpdated; // dateTime
   public $MerchantData; // MerchantProfileMerchantData
   public $TransactionData; // MerchantProfileTransactionData
+  public $RestrictedOperations; // ArrayOfTypeRestrictedOperation
+  public $ServiceCredentials; // ServiceCredentials
+  public $HostedPayments; // HostedPayments
 }
 }
 
@@ -1776,12 +2044,12 @@ if (!class_exists("StoredValueMerchantData")) {
  *StoredValueMerchantData
  */
 class StoredValueMerchantData {
-  public $AgentChain; // string
   public $ClientNumber; // string
   public $IndustryType; // IndustryType
   public $SIC; // string
   public $StoreId; // string
   public $TerminalId; // string
+  public $AgentChain; // string
 }
 }
 
@@ -1844,6 +2112,34 @@ if (!class_exists("RequestAdvice")) {
  *RequestAdvice
  */
 class RequestAdvice {
+}
+}
+
+if (!class_exists("TypeRestrictedOperation")) {
+/*
+ *TypeRestrictedOperation
+ */
+class TypeRestrictedOperation {
+}
+}
+
+if (!class_exists("ServiceCredentials")) {
+/*
+ *ServiceCredentials
+ */
+class ServiceCredentials {
+  public $Password; // string
+  public $Username; // string
+}
+}
+
+if (!class_exists("HostedPayments")) {
+/*
+ *HostedPayments
+ */
+class HostedPayments {
+  public $Code; // string
+  public $Key; // string
 }
 }
 
@@ -1947,49 +2243,31 @@ class SaveMerchantProfilesResponse {
 }
 }
 
-if (!class_exists("SignOnWithUsernamePasswordForServiceKey")) {
+if (!class_exists("SignOnWithUsernamePassword")) {
 /*
- *SignOnWithUsernamePasswordForServiceKey
+ *SignOnWithUsernamePassword
  */
-class SignOnWithUsernamePasswordForServiceKey {
+class SignOnWithUsernamePassword {
   public $serviceKey; // string
   public $username; // string
   public $password; // string
 }
 }
 
-if (!class_exists("SignOnWithUsernamePasswordForServiceKeyResponse")) {
+if (!class_exists("SignOnWithUsernamePasswordResponse")) {
 /*
- *SignOnWithUsernamePasswordForServiceKeyResponse
+ *SignOnWithUsernamePasswordResponse
  */
-class SignOnWithUsernamePasswordForServiceKeyResponse {
-  public $SignOnWithUsernamePasswordForServiceKeyResult; // string
+class SignOnWithUsernamePasswordResponse {
+  public $SignOnWithUsernamePasswordResult; // TokenResponse
 }
 }
 
-if (!class_exists("ResetPasswordForServiceKey")) {
+if (!class_exists("ChangePassword")) {
 /*
- *ResetPasswordForServiceKey
+ *ChangePassword
  */
-class ResetPasswordForServiceKey {
-  public $serviceKey; // string
-  public $userName; // string
-}
-}
-
-if (!class_exists("ResetPasswordForServiceKeyResponse")) {
-/*
- *ResetPasswordForServiceKeyResponse
- */
-class ResetPasswordForServiceKeyResponse {
-}
-}
-
-if (!class_exists("ChangePasswordForServiceKey")) {
-/*
- *ChangePasswordForServiceKey
- */
-class ChangePasswordForServiceKey {
+class ChangePassword {
   public $serviceKey; // string
   public $userName; // string
   public $password; // string
@@ -1997,19 +2275,19 @@ class ChangePasswordForServiceKey {
 }
 }
 
-if (!class_exists("ChangePasswordForServiceKeyResponse")) {
+if (!class_exists("ChangePasswordResponse")) {
 /*
- *ChangePasswordForServiceKeyResponse
+ *ChangePasswordResponse
  */
-class ChangePasswordForServiceKeyResponse {
+class ChangePasswordResponse {
 }
 }
 
-if (!class_exists("ChangeUsernameForServiceKey")) {
+if (!class_exists("ChangeUsername")) {
 /*
- *ChangeUsernameForServiceKey
+ *ChangeUsername
  */
-class ChangeUsernameForServiceKey {
+class ChangeUsername {
   public $serviceKey; // string
   public $userName; // string
   public $password; // string
@@ -2017,19 +2295,19 @@ class ChangeUsernameForServiceKey {
 }
 }
 
-if (!class_exists("ChangeUsernameForServiceKeyResponse")) {
+if (!class_exists("ChangeUsernameResponse")) {
 /*
- *ChangeUsernameForServiceKeyResponse
+ *ChangeUsernameResponse
  */
-class ChangeUsernameForServiceKeyResponse {
+class ChangeUsernameResponse {
 }
 }
 
-if (!class_exists("ChangeEmailForServiceKey")) {
+if (!class_exists("ChangeEmail")) {
 /*
- *ChangeEmailForServiceKey
+ *ChangeEmail
  */
-class ChangeEmailForServiceKey {
+class ChangeEmail {
   public $serviceKey; // string
   public $userName; // string
   public $password; // string
@@ -2037,31 +2315,31 @@ class ChangeEmailForServiceKey {
 }
 }
 
-if (!class_exists("ChangeEmailForServiceKeyResponse")) {
+if (!class_exists("ChangeEmailResponse")) {
 /*
- *ChangeEmailForServiceKeyResponse
+ *ChangeEmailResponse
  */
-class ChangeEmailForServiceKeyResponse {
+class ChangeEmailResponse {
 }
 }
 
-if (!class_exists("GetPasswordExpirationForServiceKey")) {
+if (!class_exists("GetPasswordExpiration")) {
 /*
- *GetPasswordExpirationForServiceKey
+ *GetPasswordExpiration
  */
-class GetPasswordExpirationForServiceKey {
+class GetPasswordExpiration {
   public $serviceKey; // string
   public $userName; // string
   public $password; // string
 }
 }
 
-if (!class_exists("GetPasswordExpirationForServiceKeyResponse")) {
+if (!class_exists("GetPasswordExpirationResponse")) {
 /*
- *GetPasswordExpirationForServiceKeyResponse
+ *GetPasswordExpirationResponse
  */
-class GetPasswordExpirationForServiceKeyResponse {
-  public $GetPasswordExpirationForServiceKeyResult; // dateTime
+class GetPasswordExpirationResponse {
+  public $GetPasswordExpirationResult; // dateTime
 }
 }
 
@@ -2085,58 +2363,78 @@ class ValidateMerchantProfileResponse {
 }
 }
 
-if (!class_exists("ElectronicCheckingCaptureResponse")) {
+if (!class_exists("GetAllClaims")) {
 /*
- *ElectronicCheckingCaptureResponse
+ *GetAllClaims
  */
-class ElectronicCheckingCaptureResponse {
-  public $SummaryData; // SummaryData
+class GetAllClaims {
+  public $identityToken; // string
 }
 }
 
-if (!class_exists("ElectronicCheckingTransactionResponse")) {
+if (!class_exists("GetAllClaimsResponse")) {
 /*
- *ElectronicCheckingTransactionResponse
+ *GetAllClaimsResponse
  */
-class ElectronicCheckingTransactionResponse {
-  public $ACHCapable; // boolean
-  public $Amount; // decimal
-  public $ApprovalCode; // string
-  public $ModifiedAccountNumber; // string
-  public $ModifiedRoutingNumber; // string
-  public $PaymentAccountDataToken; // string
-  public $ReturnInformation; // ReturnInformation
-  public $SubmitDate; // dateTime
+class GetAllClaimsResponse {
+  public $GetAllClaimsResult; // ArrayOfClaimMetaData
 }
 }
 
-if (!class_exists("ReturnInformation")) {
+if (!class_exists("GetClaims")) {
 /*
- *ReturnInformation
+ *GetClaims
  */
-class ReturnInformation {
-  public $ReturnCode; // string
-  public $ReturnDate; // dateTime
-  public $ReturnReason; // string
+class GetClaims {
+  public $identityToken; // string
+  public $claimNSs; // ArrayOfstring
 }
 }
 
-if (!class_exists("ElectronicCheckingTransaction")) {
+if (!class_exists("GetClaimsResponse")) {
 /*
- *ElectronicCheckingTransaction
+ *GetClaimsResponse
  */
-class ElectronicCheckingTransaction {
-  public $TenderData; // ElectronicCheckingTenderData
-  public $TransactionData; // ElectronicCheckingTransactionData
+class GetClaimsResponse {
+  public $GetClaimsResult; // ArrayOfClaimMetaData
 }
 }
 
-if (!class_exists("ElectronicCheckingCustomerData")) {
+if (!class_exists("SignOnAndAddClaims")) {
 /*
- *ElectronicCheckingCustomerData
+ *SignOnAndAddClaims
  */
-class ElectronicCheckingCustomerData {
-  public $AdditionalBillingData; // PersonalInfo
+class SignOnAndAddClaims {
+  public $identityToken; // string
+  public $claims; // ArrayOfClaimMetaData
+}
+}
+
+if (!class_exists("SignOnAndAddClaimsResponse")) {
+/*
+ *SignOnAndAddClaimsResponse
+ */
+class SignOnAndAddClaimsResponse {
+  public $SignOnAndAddClaimsResult; // string
+}
+}
+
+if (!class_exists("DelegatedSignOn")) {
+/*
+ *DelegatedSignOn
+ */
+class DelegatedSignOn {
+  public $identityToken; // string
+  public $onBehalfOfServiceKey; // string
+}
+}
+
+if (!class_exists("DelegatedSignOnResponse")) {
+/*
+ *DelegatedSignOnResponse
+ */
+class DelegatedSignOnResponse {
+  public $DelegatedSignOnResult; // string
 }
 }
 
@@ -2187,6 +2485,25 @@ class UseType {
 }
 }
 
+if (!class_exists("ElectronicCheckingTransaction")) {
+/*
+ *ElectronicCheckingTransaction
+ */
+class ElectronicCheckingTransaction {
+  public $TenderData; // ElectronicCheckingTenderData
+  public $TransactionData; // ElectronicCheckingTransactionData
+}
+}
+
+if (!class_exists("ElectronicCheckingCustomerData")) {
+/*
+ *ElectronicCheckingCustomerData
+ */
+class ElectronicCheckingCustomerData {
+  public $AdditionalBillingData; // PersonalInfo
+}
+}
+
 if (!class_exists("ElectronicCheckingTransactionData")) {
 /*
  *ElectronicCheckingTransactionData
@@ -2226,13 +2543,49 @@ class TransactionType {
 }
 }
 
-if (!class_exists("StoredValueTransaction")) {
+if (!class_exists("ElectronicCheckingTransactionResponse")) {
 /*
- *StoredValueTransaction
+ *ElectronicCheckingTransactionResponse
  */
-class StoredValueTransaction {
-  public $TenderData; // StoredValueTenderData
-  public $TransactionData; // StoredValueTransactionData
+class ElectronicCheckingTransactionResponse {
+  public $ACHCapable; // boolean
+  public $Amount; // decimal
+  public $ApprovalCode; // string
+  public $ModifiedAccountNumber; // string
+  public $ModifiedRoutingNumber; // string
+  public $PaymentAccountDataToken; // string
+  public $ReturnInformation; // ReturnInformation
+  public $SubmitDate; // dateTime
+}
+}
+
+if (!class_exists("ReturnInformation")) {
+/*
+ *ReturnInformation
+ */
+class ReturnInformation {
+  public $ReturnCode; // string
+  public $ReturnDate; // dateTime
+  public $ReturnReason; // string
+}
+}
+
+if (!class_exists("ElectronicCheckingCaptureResponse")) {
+/*
+ *ElectronicCheckingCaptureResponse
+ */
+class ElectronicCheckingCaptureResponse {
+  public $SummaryData; // SummaryData
+}
+}
+
+if (!class_exists("StoredValueBalanceTransferTenderData")) {
+/*
+ *StoredValueBalanceTransferTenderData
+ */
+class StoredValueBalanceTransferTenderData {
+  public $SourceCardData; // CardData
+  public $ConsumerIdentification; // ConsumerIdentification
 }
 }
 
@@ -2297,15 +2650,23 @@ class IdEntryMode {
 }
 }
 
+if (!class_exists("StoredValueTransaction")) {
+/*
+ *StoredValueTransaction
+ */
+class StoredValueTransaction {
+  public $TenderData; // StoredValueTenderData
+  public $TransactionData; // StoredValueTransactionData
+}
+}
+
 if (!class_exists("StoredValueTransactionData")) {
 /*
  *StoredValueTransactionData
  */
 class StoredValueTransactionData {
   public $EmployeeId; // string
-  public $IndustryType; // IndustryType
   public $TipAmount; // decimal
-  public $TenderCurrencyCode; // TypeISOCurrencyCodeA3
   public $CardRestrictionValue; // string
   public $EntryMode; // EntryMode
   public $Unload; // boolean
@@ -2339,16 +2700,6 @@ if (!class_exists("TransactionCode")) {
  *TransactionCode
  */
 class TransactionCode {
-}
-}
-
-if (!class_exists("StoredValueBalanceTransferTenderData")) {
-/*
- *StoredValueBalanceTransferTenderData
- */
-class StoredValueBalanceTransferTenderData {
-  public $SourceCardData; // CardData
-  public $ConsumerIdentification; // ConsumerIdentification
 }
 }
 
@@ -2698,6 +3049,7 @@ class TransactionInformation {
   public $IsAcknowledged; // BooleanParameter
   public $MaskedPAN; // string
   public $MerchantProfileId; // string
+  public $OrderNumber; // string
   public $OriginatorTransactionId; // string
   public $ReconciliationBalance; // decimal
   public $ReconciliationState; // ReconciliationState
@@ -2913,14 +3265,6 @@ class AuthenticationFault {
 }
 }
 
-if (!class_exists("BadAttemptThresholdExceededFault")) {
-/*
- *BadAttemptThresholdExceededFault
- */
-class BadAttemptThresholdExceededFault {
-}
-}
-
 if (!class_exists("PasswordExpiredFault")) {
 /*
  *PasswordExpiredFault
@@ -2937,6 +3281,14 @@ class OneTimePasswordFault {
 }
 }
 
+if (!class_exists("BadAttemptThresholdExceededFault")) {
+/*
+ *BadAttemptThresholdExceededFault
+ */
+class BadAttemptThresholdExceededFault {
+}
+}
+
 if (!class_exists("LockedByAdminFault")) {
 /*
  *LockedByAdminFault
@@ -2950,14 +3302,6 @@ if (!class_exists("SendEmailFault")) {
  *SendEmailFault
  */
 class SendEmailFault {
-}
-}
-
-if (!class_exists("GeneratePasswordFault")) {
-/*
- *GeneratePasswordFault
- */
-class GeneratePasswordFault {
 }
 }
 
@@ -2985,14 +3329,20 @@ class InvalidEmailFault {
 }
 }
 
-if (!class_exists("BankcardTransactionResponsePro")) {
+if (!class_exists("SystemFault")) {
 /*
- *BankcardTransactionResponsePro
+ *SystemFault
  */
-class BankcardTransactionResponsePro {
-  public $AdviceResponse; // AdviceResponse
-  public $CommercialCardResponse; // CommercialCardResponse
-  public $ReturnedACI; // string
+class SystemFault {
+}
+}
+
+if (!class_exists("BankcardTenderDataPro")) {
+/*
+ *BankcardTenderDataPro
+ */
+class BankcardTenderDataPro {
+  public $EMVData; // EMVData
 }
 }
 
@@ -3030,6 +3380,17 @@ class BankcardInterchangeData {
   public $TotalNumberOfInstallments; // int
   public $CurrentInstallmentNumber; // int
   public $RequestAdvice; // RequestAdvice
+}
+}
+
+if (!class_exists("BankcardTransactionResponsePro")) {
+/*
+ *BankcardTransactionResponsePro
+ */
+class BankcardTransactionResponsePro {
+  public $AdviceResponse; // AdviceResponse
+  public $CommercialCardResponse; // CommercialCardResponse
+  public $ReturnedACI; // string
 }
 }
 
@@ -3196,74 +3557,69 @@ class CWSTransactionManagement extends SoapClient {
                                     'PagingParameters' => 'PagingParameters',
                                     'DataServicesUnavailableFault' => 'DataServicesUnavailableFault',
                                     'DSBaseFault' => 'DSBaseFault',
+                                    'Resubmit' => 'Resubmit',
+                                    'Addendum' => 'Addendum',
+                                    'Unmanaged' => 'Unmanaged',
+                                    'TransactionTenderData' => 'TransactionTenderData',
+                                    'TypeISOCountryCodeA3' => 'TypeISOCountryCodeA3',
+                                    'CVDataProvided' => 'CVDataProvided',
+                                    'EMVData' => 'EMVData',
+                                    'Transaction' => 'Transaction',
+                                    'TransactionCustomerData' => 'TransactionCustomerData',
+                                    'CustomerInfo' => 'CustomerInfo',
+                                    'NameInfo' => 'NameInfo',
+                                    'AddressInfo' => 'AddressInfo',
+                                    'InternationalAddressInfo' => 'InternationalAddressInfo',
+                                    'PersonalInfo' => 'PersonalInfo',
+                                    'DriversLicense' => 'DriversLicense',
+                                    'TypeStateProvince' => 'TypeStateProvince',
+                                    'TransactionReportingData' => 'TransactionReportingData',
+                                    'TransactionData' => 'TransactionData',
+                                    'TypeISOCurrencyCodeA3' => 'TypeISOCurrencyCodeA3',
+                                    'DiscountData' => 'DiscountData',
+                                    'PINlessDebitData' => 'PINlessDebitData',
+                                    'BillPayServiceData' => 'BillPayServiceData',
+                                    'PayeeData' => 'PayeeData',
+                                    'EntryMode' => 'EntryMode',
+                                    'AlternativeMerchantData' => 'AlternativeMerchantData',
                                     'Response' => 'Response',
                                     'Status' => 'Status',
                                     'ServiceTransactionDateTime' => 'ServiceTransactionDateTime',
-                                    'Addendum' => 'Addendum',
-                                    'Unmanaged' => 'Unmanaged',
                                     'CaptureState' => 'CaptureState',
                                     'TransactionState' => 'TransactionState',
                                     'IndustryType' => 'IndustryType',
                                     'SummaryData' => 'SummaryData',
                                     'SummaryTotals' => 'SummaryTotals',
                                     'CVResult' => 'CVResult',
-                                    'Transaction' => 'Transaction',
-                                    'TransactionCustomerData' => 'TransactionCustomerData',
-                                    'CustomerInfo' => 'CustomerInfo',
-                                    'NameInfo' => 'NameInfo',
-                                    'AddressInfo' => 'AddressInfo',
-                                    'TypeISOCountryCodeA3' => 'TypeISOCountryCodeA3',
-                                    'InternationalAddressInfo' => 'InternationalAddressInfo',
-                                    'PersonalInfo' => 'PersonalInfo',
-                                    'DriversLicense' => 'DriversLicense',
-                                    'TypeStateProvince' => 'TypeStateProvince',
-                                    'TransactionReportingData' => 'TransactionReportingData',
-                                    'TransactionTenderData' => 'TransactionTenderData',
-                                    'CVDataProvided' => 'CVDataProvided',
-                                    'TransactionData' => 'TransactionData',
-                                    'TypeISOCurrencyCodeA3' => 'TypeISOCurrencyCodeA3',
-                                    'PINlessDebitData' => 'PINlessDebitData',
-                                    'BillPayServiceData' => 'BillPayServiceData',
-                                    'PayeeData' => 'PayeeData',
-                                    'EntryMode' => 'EntryMode',
-                                    'AlternativeMerchantData' => 'AlternativeMerchantData',
                                     'Return' => 'Return',
                                     'Undo' => 'Undo',
                                     'Capture' => 'Capture',
                                     'Manage' => 'Manage',
-                                    'Resubmit' => 'Resubmit',
                                     'Adjust' => 'Adjust',
-                                    'BankcardTransactionResponse' => 'BankcardTransactionResponse',
-                                    'BankcardCaptureResponse' => 'BankcardCaptureResponse',
-                                    'TransactionSummaryData' => 'TransactionSummaryData',
-                                    'Totals' => 'Totals',
-                                    'PrepaidCard' => 'PrepaidCard',
-                                    'TypeCardType' => 'TypeCardType',
-                                    'AVSResult' => 'AVSResult',
-                                    'AddressResult' => 'AddressResult',
-                                    'CountryResult' => 'CountryResult',
-                                    'StateResult' => 'StateResult',
-                                    'PostalCodeResult' => 'PostalCodeResult',
-                                    'PhoneResult' => 'PhoneResult',
-                                    'CardholderNameResult' => 'CardholderNameResult',
-                                    'CityResult' => 'CityResult',
-                                    'Resubmit' => 'Resubmit',
-                                    'AdviceResponse' => 'AdviceResponse',
-                                    'CommercialCardResponse' => 'CommercialCardResponse',
-                                    'BankcardTransaction' => 'BankcardTransaction',
-                                    'BankcardApplicationConfigurationData' => 'BankcardApplicationConfigurationData',
-                                    'ApplicationLocation' => 'ApplicationLocation',
-                                    'HardwareType' => 'HardwareType',
-                                    'PINCapability' => 'PINCapability',
-                                    'ReadCapability' => 'ReadCapability',
+                                    'Resubmit3DSecure' => 'Resubmit3DSecure',
+                                    'ResubmitReason' => 'ResubmitReason',
                                     'BankcardTenderData' => 'BankcardTenderData',
                                     'CardData' => 'CardData',
+                                    'TypeCardType' => 'TypeCardType',
                                     'CardSecurityData' => 'CardSecurityData',
                                     'AVSData' => 'AVSData',
                                     'InternationalAVSData' => 'InternationalAVSData',
                                     'InternationalAVSOverride' => 'InternationalAVSOverride',
                                     'EcommerceSecurityData' => 'EcommerceSecurityData',
                                     'TokenIndicator' => 'TokenIndicator',
+                                    'TypeCardholderId' => 'TypeCardholderId',
+                                    'BankcardTransaction' => 'BankcardTransaction',
+                                    'BankcardApplicationConfigurationData' => 'BankcardApplicationConfigurationData',
+                                    'ApplicationLocation' => 'ApplicationLocation',
+                                    'HardwareType' => 'HardwareType',
+                                    'PINCapability' => 'PINCapability',
+                                    'ReadCapability' => 'ReadCapability',
+                                    'EMVTerminalData' => 'EMVTerminalData',
+                                    'CardDataOutputCapability' => 'CardDataOutputCapability',
+                                    'CardholderAuthenticationCapability' => 'CardholderAuthenticationCapability',
+                                    'PINMaxCharacters' => 'PINMaxCharacters',
+                                    'TerminalOperator' => 'TerminalOperator',
+                                    'TerminalOutputCapability' => 'TerminalOutputCapability',
                                     'BankcardTransactionData' => 'BankcardTransactionData',
                                     'ManagedBilling' => 'ManagedBilling',
                                     'ManagedBillingInstallments' => 'ManagedBillingInstallments',
@@ -3289,13 +3645,36 @@ class CWSTransactionManagement extends SoapClient {
                                     'InternetTransactionData' => 'InternetTransactionData',
                                     'PartialApprovalSupportType' => 'PartialApprovalSupportType',
                                     'TransactionCode' => 'TransactionCode',
+                                    'TypeCardholderAuthenticationEntity' => 'TypeCardholderAuthenticationEntity',
+                                    'BankcardTransactionResponse' => 'BankcardTransactionResponse',
+                                    'BankcardCaptureResponse' => 'BankcardCaptureResponse',
+                                    'TransactionSummaryData' => 'TransactionSummaryData',
+                                    'Totals' => 'Totals',
+                                    'PrepaidCard' => 'PrepaidCard',
+                                    'AdviceResponse' => 'AdviceResponse',
+                                    'CommercialCardResponse' => 'CommercialCardResponse',
+                                    'AVSResult' => 'AVSResult',
+                                    'AddressResult' => 'AddressResult',
+                                    'CountryResult' => 'CountryResult',
+                                    'StateResult' => 'StateResult',
+                                    'PostalCodeResult' => 'PostalCodeResult',
+                                    'PhoneResult' => 'PhoneResult',
+                                    'CardholderNameResult' => 'CardholderNameResult',
+                                    'CityResult' => 'CityResult',
+                                    'Resubmit' => 'Resubmit',
+                                    'EMVDataResponse' => 'EMVDataResponse',
+                                    'TypeLevel3Added' => 'TypeLevel3Added',
                                     'BankcardReturn' => 'BankcardReturn',
                                     'BankcardUndo' => 'BankcardUndo',
                                     'PINDebitUndoReason' => 'PINDebitUndoReason',
+                                    'Reason' => 'Reason',
                                     'BankcardCapture' => 'BankcardCapture',
                                     'ChargeType' => 'ChargeType',
-                                    'Resubmit3DSecure' => 'Resubmit3DSecure',
-                                    'ResubmitReason' => 'ResubmitReason',
+                                    'TokenResponse' => 'TokenResponse',
+                                    'ClaimMetaData' => 'ClaimMetaData',
+                                    'ScopeMetaData' => 'ScopeMetaData',
+                                    'IdentityTypeEnum' => 'IdentityTypeEnum',
+                                    'ClaimTypeEnum' => 'ClaimTypeEnum',
                                     'SignOnWithToken' => 'SignOnWithToken',
                                     'SignOnWithTokenResponse' => 'SignOnWithTokenResponse',
                                     'GetServiceInformation' => 'GetServiceInformation',
@@ -3327,6 +3706,12 @@ class CWSTransactionManagement extends SoapClient {
                                     'PINCapability' => 'PINCapability',
                                     'ReadCapability' => 'ReadCapability',
                                     'EncryptionType' => 'EncryptionType',
+                                    'EMVTerminalData' => 'EMVTerminalData',
+                                    'CardDataOutputCapability' => 'CardDataOutputCapability',
+                                    'CardholderAuthenticationCapability' => 'CardholderAuthenticationCapability',
+                                    'PINMaxCharacters' => 'PINMaxCharacters',
+                                    'TerminalOperator' => 'TerminalOperator',
+                                    'TerminalOutputCapability' => 'TerminalOutputCapability',
                                     'SaveApplicationDataResponse' => 'SaveApplicationDataResponse',
                                     'GetApplicationData' => 'GetApplicationData',
                                     'GetApplicationDataResponse' => 'GetApplicationDataResponse',
@@ -3354,6 +3739,9 @@ class CWSTransactionManagement extends SoapClient {
                                     'EntryMode' => 'EntryMode',
                                     'RequestACI' => 'RequestACI',
                                     'RequestAdvice' => 'RequestAdvice',
+                                    'TypeRestrictedOperation' => 'TypeRestrictedOperation',
+                                    'ServiceCredentials' => 'ServiceCredentials',
+                                    'HostedPayments' => 'HostedPayments',
                                     'GetMerchantProfileIds' => 'GetMerchantProfileIds',
                                     'GetMerchantProfileIdsResponse' => 'GetMerchantProfileIdsResponse',
                                     'GetMerchantProfilesByProfileId' => 'GetMerchantProfilesByProfileId',
@@ -3364,46 +3752,52 @@ class CWSTransactionManagement extends SoapClient {
                                     'DeleteMerchantProfileResponse' => 'DeleteMerchantProfileResponse',
                                     'SaveMerchantProfiles' => 'SaveMerchantProfiles',
                                     'SaveMerchantProfilesResponse' => 'SaveMerchantProfilesResponse',
-                                    'SignOnWithUsernamePasswordForServiceKey' => 'SignOnWithUsernamePasswordForServiceKey',
-                                    'SignOnWithUsernamePasswordForServiceKeyResponse' => 'SignOnWithUsernamePasswordForServiceKeyResponse',
-                                    'ResetPasswordForServiceKey' => 'ResetPasswordForServiceKey',
-                                    'ResetPasswordForServiceKeyResponse' => 'ResetPasswordForServiceKeyResponse',
-                                    'ChangePasswordForServiceKey' => 'ChangePasswordForServiceKey',
-                                    'ChangePasswordForServiceKeyResponse' => 'ChangePasswordForServiceKeyResponse',
-                                    'ChangeUsernameForServiceKey' => 'ChangeUsernameForServiceKey',
-                                    'ChangeUsernameForServiceKeyResponse' => 'ChangeUsernameForServiceKeyResponse',
-                                    'ChangeEmailForServiceKey' => 'ChangeEmailForServiceKey',
-                                    'ChangeEmailForServiceKeyResponse' => 'ChangeEmailForServiceKeyResponse',
-                                    'GetPasswordExpirationForServiceKey' => 'GetPasswordExpirationForServiceKey',
-                                    'GetPasswordExpirationForServiceKeyResponse' => 'GetPasswordExpirationForServiceKeyResponse',
+                                    'SignOnWithUsernamePassword' => 'SignOnWithUsernamePassword',
+                                    'SignOnWithUsernamePasswordResponse' => 'SignOnWithUsernamePasswordResponse',
+                                    'ChangePassword' => 'ChangePassword',
+                                    'ChangePasswordResponse' => 'ChangePasswordResponse',
+                                    'ChangeUsername' => 'ChangeUsername',
+                                    'ChangeUsernameResponse' => 'ChangeUsernameResponse',
+                                    'ChangeEmail' => 'ChangeEmail',
+                                    'ChangeEmailResponse' => 'ChangeEmailResponse',
+                                    'GetPasswordExpiration' => 'GetPasswordExpiration',
+                                    'GetPasswordExpirationResponse' => 'GetPasswordExpirationResponse',
                                     'ValidateMerchantProfile' => 'ValidateMerchantProfile',
                                     'ValidateMerchantProfileResponse' => 'ValidateMerchantProfileResponse',
-                                    'ElectronicCheckingCaptureResponse' => 'ElectronicCheckingCaptureResponse',
-                                    'ElectronicCheckingTransactionResponse' => 'ElectronicCheckingTransactionResponse',
-                                    'ReturnInformation' => 'ReturnInformation',
-                                    'ElectronicCheckingTransaction' => 'ElectronicCheckingTransaction',
-                                    'ElectronicCheckingCustomerData' => 'ElectronicCheckingCustomerData',
+                                    'GetAllClaims' => 'GetAllClaims',
+                                    'GetAllClaimsResponse' => 'GetAllClaimsResponse',
+                                    'GetClaims' => 'GetClaims',
+                                    'GetClaimsResponse' => 'GetClaimsResponse',
+                                    'SignOnAndAddClaims' => 'SignOnAndAddClaims',
+                                    'SignOnAndAddClaimsResponse' => 'SignOnAndAddClaimsResponse',
+                                    'DelegatedSignOn' => 'DelegatedSignOn',
+                                    'DelegatedSignOnResponse' => 'DelegatedSignOnResponse',
                                     'ElectronicCheckingTenderData' => 'ElectronicCheckingTenderData',
                                     'CheckData' => 'CheckData',
                                     'CheckCountryCode' => 'CheckCountryCode',
                                     'OwnerType' => 'OwnerType',
                                     'UseType' => 'UseType',
+                                    'ElectronicCheckingTransaction' => 'ElectronicCheckingTransaction',
+                                    'ElectronicCheckingCustomerData' => 'ElectronicCheckingCustomerData',
                                     'ElectronicCheckingTransactionData' => 'ElectronicCheckingTransactionData',
                                     'SECCode' => 'SECCode',
                                     'ServiceType' => 'ServiceType',
                                     'TransactionType' => 'TransactionType',
-                                    'StoredValueTransaction' => 'StoredValueTransaction',
+                                    'ElectronicCheckingTransactionResponse' => 'ElectronicCheckingTransactionResponse',
+                                    'ReturnInformation' => 'ReturnInformation',
+                                    'ElectronicCheckingCaptureResponse' => 'ElectronicCheckingCaptureResponse',
+                                    'StoredValueBalanceTransferTenderData' => 'StoredValueBalanceTransferTenderData',
                                     'StoredValueTenderData' => 'StoredValueTenderData',
                                     'CardData' => 'CardData',
                                     'CardSecurityData' => 'CardSecurityData',
                                     'ConsumerIdentification' => 'ConsumerIdentification',
                                     'IdType' => 'IdType',
                                     'IdEntryMode' => 'IdEntryMode',
+                                    'StoredValueTransaction' => 'StoredValueTransaction',
                                     'StoredValueTransactionData' => 'StoredValueTransactionData',
                                     'CardStatus' => 'CardStatus',
                                     'OperationType' => 'OperationType',
                                     'TransactionCode' => 'TransactionCode',
-                                    'StoredValueBalanceTransferTenderData' => 'StoredValueBalanceTransferTenderData',
                                     'StoredValueActivateTenderData' => 'StoredValueActivateTenderData',
                                     'VirtualCardData' => 'VirtualCardData',
                                     'StoredValueReturn' => 'StoredValueReturn',
@@ -3452,19 +3846,20 @@ class CWSTransactionManagement extends SoapClient {
                                     'ExpiredTokenFault' => 'ExpiredTokenFault',
                                     'InvalidTokenFault' => 'InvalidTokenFault',
                                     'AuthenticationFault' => 'AuthenticationFault',
-                                    'BadAttemptThresholdExceededFault' => 'BadAttemptThresholdExceededFault',
                                     'PasswordExpiredFault' => 'PasswordExpiredFault',
                                     'OneTimePasswordFault' => 'OneTimePasswordFault',
+                                    'BadAttemptThresholdExceededFault' => 'BadAttemptThresholdExceededFault',
                                     'LockedByAdminFault' => 'LockedByAdminFault',
                                     'SendEmailFault' => 'SendEmailFault',
-                                    'GeneratePasswordFault' => 'GeneratePasswordFault',
                                     'PasswordInvalidFault' => 'PasswordInvalidFault',
                                     'UserNotFoundFault' => 'UserNotFoundFault',
                                     'InvalidEmailFault' => 'InvalidEmailFault',
-                                    'BankcardTransactionResponsePro' => 'BankcardTransactionResponsePro',
+                                    'SystemFault' => 'SystemFault',
+                                    'BankcardTenderDataPro' => 'BankcardTenderDataPro',
                                     'BankcardTransactionDataPro' => 'BankcardTransactionDataPro',
                                     'BankcardTransactionPro' => 'BankcardTransactionPro',
                                     'BankcardInterchangeData' => 'BankcardInterchangeData',
+                                    'BankcardTransactionResponsePro' => 'BankcardTransactionResponsePro',
                                     'BankcardReturnPro' => 'BankcardReturnPro',
                                     'BankcardCapturePro' => 'BankcardCapturePro',
                                     'BankcardCaptureResponsePro' => 'BankcardCaptureResponsePro',
@@ -3488,20 +3883,6 @@ class CWSTransactionManagement extends SoapClient {
       }
     }
     parent::__construct($wsdl, $options);
-  }
-
-  /*
-   *  
-   *
-   * @param Ping $parameters
-   * @return PingResponse
-   */
-  public function Ping(Ping $parameters) {
-    return $this->__soapCall('Ping', array($parameters),       array(
-            'uri' => 'http://schemas.evosnap.com/CWS/v2.0/DataServices',
-            'soapaction' => ''
-           )
-      );
   }
 
   /*
@@ -3554,6 +3935,34 @@ class CWSTransactionManagement extends SoapClient {
    */
   public function QueryTransactionsSummary(QueryTransactionsSummary $parameters) {
     return $this->__soapCall('QueryTransactionsSummary', array($parameters),       array(
+            'uri' => 'http://schemas.evosnap.com/CWS/v2.0/DataServices',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /*
+   *  
+   *
+   * @param QueryBillingEventSummary $parameters
+   * @return QueryBillingEventSummaryResponse
+   */
+  public function QueryBillingEventSummary(QueryBillingEventSummary $parameters) {
+    return $this->__soapCall('QueryBillingEventSummary', array($parameters),       array(
+            'uri' => 'http://schemas.evosnap.com/CWS/v2.0/DataServices',
+            'soapaction' => ''
+           )
+      );
+  }
+
+  /*
+   *  
+   *
+   * @param QueryBillingEventDetail $parameters
+   * @return QueryBillingEventDetailResponse
+   */
+  public function QueryBillingEventDetail(QueryBillingEventDetail $parameters) {
+    return $this->__soapCall('QueryBillingEventDetail', array($parameters),       array(
             'uri' => 'http://schemas.evosnap.com/CWS/v2.0/DataServices',
             'soapaction' => ''
            )

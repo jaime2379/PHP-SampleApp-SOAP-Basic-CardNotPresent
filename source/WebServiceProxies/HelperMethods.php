@@ -1166,6 +1166,55 @@ function buildTransactionPro($credit_info, $trans_info, $processIntlAvs) {
 				$bank_transpro->Addendum->Unmanaged->Any->string = $cred;
 			}
 		}
+	}
+		if ($trans_info->Level2Data != null) {
+			$bank_transpro->Level2Data = new Level2Data ();
+			$bank_transpro->Level2Data->BaseAmount = $trans_info->Level2Data->BaseAmount;
+			$bank_transpro->Level2Data->CommodityCode = $trans_info->Level2Data->CommodityCode;
+			$bank_transpro->Level2Data->CompanyName = $trans_info->Level2Data->CompanyName;
+			$bank_transpro->Level2Data->CustomerCode = $trans_info->Level2Data->CustomerCode;
+			$bank_transpro->Level2Data->DiscountAmount = $trans_info->Level2Data->DiscountAmount;
+			$bank_transpro->Level2Data->DestinationPostalCode = $trans_info->Level2Data->DestinationPostalCode;
+			$bank_transpro->Level2Data->DutyAmount = $trans_info->Level2Data->DutyAmount;
+			$bank_transpro->Level2Data->FreightAmount = $trans_info->Level2Data->FreightAmount;
+			$bank_transpro->Level2Data->MiscHandlingAmount = $trans_info->Level2Data->MiscHandlingAmount;
+			$bank_transpro->Level2Data->RequesterName = $trans_info->Level2Data->RequesterName;
+			$bank_transpro->Level2Data->ShipFromPostalCode = $trans_info->Level2Data->ShipFromPostalCode;
+			$bank_transpro->Level2Data->ShipmentId = $trans_info->Level2Data->ShipmentId;
+			$bank_transpro->Level2Data->OrderDate = $trans_info->Level2Data->OrderDate;
+			$bank_transpro->Level2Data->OrderNumber = $trans_info->Level2Data->OrderNumber;
+			$bank_transpro->Level2Data->Description = $trans_info->Level2Data->Description;
+			$bank_transpro->Level2Data->DestinationCountryCode = $trans_info->Level2Data->DestinationCountryCode;
+			$bank_transpro->Level2Data->Tax = new Tax ();
+			$bank_transpro->Level2Data->Tax->Amount = $trans_info->Level2Data->Tax->Amount;
+			$bank_transpro->Level2Data->Tax->Rate = $trans_info->Level2Data->Tax->Rate;
+			$bank_transpro->Level2Data->Tax->InvoiceNumber = $trans_info->Level2Data->Tax->InvoiceNumber;
+			$bank_transpro->Level2Data->Tax->ItemizedTaxes = new ItemizedTax ();
+			$bank_transpro->Level2Data->Tax->ItemizedTaxes->Amount = $trans_info->Level2Data->Tax->ItemizedTaxes->Amount;
+			$bank_transpro->Level2Data->Tax->ItemizedTaxes->Rate = $trans_info->Level2Data->Tax->ItemizedTaxes->Rate;
+			$bank_transpro->Level2Data->Tax->ItemizedTaxes->Type = $trans_info->Level2Data->Tax->ItemizedTaxes->Type;
+			
+		}
+		if ($trans_info->LineItemDetails !=null){
+			$bank_transpro->LineItemDetail = new LineItemDetail ();
+			$bank_transpro->LineItemDetail->DiscountAmount = $trans_info->LineItemDetail->DiscountAmount;
+			$bank_transpro->LineItemDetail->ProductCode = $trans_info->LineItemDetail->ProductCode;
+			$bank_transpro->LineItemDetail->Tax = new Tax ();
+			$bank_transpro->LineItemDetail->Amount = $trans_info->LineItemDetail->Amount;
+			$bank_transpro->LineItemDetail->UnitPrice = $trans_info->LineItemDetail->UnitPrice;
+			$bank_transpro->LineItemDetail->Quantity = $trans_info->LineItemDetail->Quantity;
+			$bank_transpro->LineItemDetail->Description = $trans_info->LineItemDetail->Description;
+			$bank_transpro->LineItemDetail->Amount = $trans_info->LineItemDetail->Amount;
+			$bank_transpro->LineItemDetail->UnitOfMeasure = $trans_info->LineItemDetail->UnitOfMeasure;
+			$bank_transpro->LineItemDetail->DiscountAmount = $trans_info->LineItemDetail->DiscountAmount;
+			$bank_transpro->LineItemDetail->DiscountIncluded = $trans_info->LineItemDetail->DiscountIncluded;
+			$bank_transpro->LineItemDetail->CommodityCode = $trans_info->LineItemDetail->CommodityCode;
+			$bank_transpro->LineItemDetail->TaxIncluded = $trans_info->LineItemDetail->TaxIncluded;
+			$bank_transpro->LIneItemDetail->UPC = $trans_info->LineItemDetail->UPC;
+			
+			
+			
+			
 			
 	}
 		if ($trans_info->InterchangeData != null) {

@@ -193,7 +193,7 @@ class CWSClient {
 				$serviceKey = '/' . $serviceKey;
 			$this->serviceInfo = new CWSServiceInformation ( dirname(__FILE__).'/WSDL/CwsServiceInformation.wsdl', array ('trace' => 1, 'exceptions' => 1, 'cache_wsdl' => WSDL_CACHE_NONE ) );
 			$this->bankCard = new CwsTransactionProcessing (  dirname(__FILE__).'/WSDL/CwsTransactionProcessing.wsdl', array ('trace' => 1, 'exceptions' => 1, 'cache_wsdl' => WSDL_CACHE_NONE ) );
-			$this->txnManagement = new CWSTransactionManagement (  dirname(__FILE__).'/WSDL/CWSTransactionManagement.wsdl', array ('trace' => 1, 'exceptions' => 1, 'cache_wsdl' => WSDL_CACHE_NONE ) );
+			$this->txnManagement = new CWSTransactionManagement (  dirname(__FILE__).'/WSDL/CwsDataServices.wsdl', array ('trace' => 1, 'exceptions' => 1, 'cache_wsdl' => WSDL_CACHE_NONE ) );
 			
 			$this->serviceInfo->__setLocation(Settings::BaseSvcEndpointPrimary);
 			$this->bankCard->__setLocation(Settings::BaseTxnEndpointPrimary);
